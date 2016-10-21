@@ -96,7 +96,7 @@ function init() {
     //make xR
     material = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
     var xRail = new shopSuppRail(xRL,xRD); //from shop.js
-    geom = xRail.makeCsg().translate([0,-basW/2,basH])// cyl.union([cube0,cube1]).translate([0,-basW/2,basH]);
+    geom = xRail.makeCsg().translate([0,-basW/2 + xRail.width/2,basH]);
     geom = geom.union(geom.mirroredY());
     geom3 = THREE.CSG.fromCSG(geom);
     var xR0 = new THREE.Mesh(geom3,material);
