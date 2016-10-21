@@ -88,7 +88,7 @@ function init() {
     // Make base
     var material = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
     var base = new shopBase(basL,basW,basH); //from shop.js
-    var geom = base.makeCSG().center("y");
+    var geom = base.makeCsg().center("y");
     var geom3 = THREE.CSG.fromCSG(geom);
     base = new THREE.Mesh(geom3,material);
     scene.add(base);
