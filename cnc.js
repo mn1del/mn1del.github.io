@@ -102,7 +102,14 @@ function init() {
     var xR0 = new THREE.Mesh(geom3,material);
     //var xR1 = xR0.clone(false);
     //xR1.position.set(0,basW,0);
-
+    
+    //make xLinBear
+    var xLinBear = new shopOpenLinBear(xRD);
+    geom = xLinBear.makeCsg().translate([0,0,xRail.railZPos - xLinBear.railZPos])
+    geom3 = THREE.CSG.fromCSG(geom);
+    var xLB = new THREE.Mesh(geom3,material);
+    
+    xR0.add(xLB);
     base.add(xR0);
     //xR0.add(ranSh);
 
