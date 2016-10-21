@@ -87,33 +87,21 @@ function init() {
 
     // Make base
     var material = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
-    var geom = new CSG.cube({corner1:[0,0,0],corner2:[basL,basW,basH]}).center("y");
+    var base = new shopBase(basL,basW,basH); //from shop.js
+    var geom = base.makeCSG().center("y");
     var geom3 = THREE.CSG.fromCSG(geom);
     base = new THREE.Mesh(geom3,material);
     scene.add(base);
 
     //make xR
-    var material = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
-    /*var cyl = new CSG.cylinder({start:[0,0,xRSH],end:[xRL ,0,xRSH],radius:xRD /2,resolution:16});
-    var cube0 = new CSG.cube({corner1:[0,xRSW/2,0],corner2:[xRL,-xRSW/2,xRSSH]});
-    var cube1 = new CSG.cube({corner1:[-5,0.5,0],corner2:[xRL,-0.5,xRSH]});*/
-    var xRCsg = new shopSuppRail(xRL,xRD);
-    geom = xRCsg.makeCsg().translate([0,-basW/2,basH])// cyl.union([cube0,cube1]).translate([0,-basW/2,basH]);
+    material = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
+    var xRail = new shopSuppRail(xRL,xRD); //from shop.js
+    geom = xRail.makeCsg().translate([0,-basW/2,basH])// cyl.union([cube0,cube1]).translate([0,-basW/2,basH]);
     geom = geom.union(geom.mirroredY());
     geom3 = THREE.CSG.fromCSG(geom);
     var xR0 = new THREE.Mesh(geom3,material);
     //var xR1 = xR0.clone(false);
     //xR1.position.set(0,basW,0);
-    
-    //make randomShape
-    //var shop = new CNC4YOU();
-    //var randomShape = new shop.shopCube(300,250,250);
-    
-    /*var randomShape = new shopCube(300,250,250);
-    console.log("length: " + randomShape.length);
-    geom = randomShape.makeCsg();
-    geom3 = THREE.CSG.fromCSG(geom);
-    var ranSh = new THREE.Mesh(geom3,material);*/
 
     base.add(xR0);
     //xR0.add(ranSh);
