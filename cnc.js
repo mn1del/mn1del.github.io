@@ -113,7 +113,7 @@ function init() {
     scene.add(base);  
                                      
     //xRails
-    geom3 = THREE.CSG.fromCSG(baseCsg);
+    geom3 = THREE.CSG.fromCSG(xRailCsg);
     var xRails = new THREE.Mesh(geom3,matAluminium);
     base.add(xRails);                                 
     //xLinBears
