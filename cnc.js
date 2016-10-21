@@ -56,7 +56,7 @@ function init() {
     //camera.position.y = -1000;
     //camera.position.z = 200;
     scene.add( camera );
-
+/*
     //add TrackBall controls to the camera
     controls = new THREE.TrackballControls( camera);
     controls.position0.set( -200, -850, 400 ); // set a new desired position
@@ -73,7 +73,7 @@ function init() {
     controls.minDistance = 1.1;
     controls.maxDistance = 10000;
     controls.keys = [ 16, 17, 18 ]; // [ rotateKey, zoomKey, panKey ]
-  
+  */
 
     //create light(s)
     var dirLight = new THREE.DirectionalLight(colWhite , 0.95);
@@ -143,7 +143,7 @@ function animate() {
     requestAnimationFrame( animate );    
 
     camera.up.set(0,0,1);
-    controls.update();
+    //controls.update();
     render();
     
 }
