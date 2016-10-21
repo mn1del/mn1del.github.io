@@ -109,14 +109,14 @@ function init() {
     //var shop = new CNC4YOU();
     //var randomShape = new shop.shopCube(300,250,250);
     
-    var randomShape = new shopCube(300,250,250);
+    /*var randomShape = new shopCube(300,250,250);
     console.log("length: " + randomShape.length);
     geom = randomShape.makeCsg();
     geom3 = THREE.CSG.fromCSG(geom);
-    var ranSh = new THREE.Mesh(geom3,material);
+    var ranSh = new THREE.Mesh(geom3,material);*/
 
     base.add(xR0);
-    xR0.add(ranSh);
+    //xR0.add(ranSh);
 
 }
 
