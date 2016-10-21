@@ -94,10 +94,11 @@ function init() {
 
     //make xR
     var material = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
-    var cyl = new CSG.cylinder({start:[0,0,xRSH],end:[xRL ,0,xRSH],radius:xRD /2,resolution:16});
+    /*var cyl = new CSG.cylinder({start:[0,0,xRSH],end:[xRL ,0,xRSH],radius:xRD /2,resolution:16});
     var cube0 = new CSG.cube({corner1:[0,xRSW/2,0],corner2:[xRL,-xRSW/2,xRSSH]});
-    var cube1 = new CSG.cube({corner1:[-5,0.5,0],corner2:[xRL,-0.5,xRSH]});
-    geom = cyl.union([cube0,cube1]).translate([0,-basW/2,basH]);
+    var cube1 = new CSG.cube({corner1:[-5,0.5,0],corner2:[xRL,-0.5,xRSH]});*/
+    var xRCsg = new shopSuppRail(xRL,xRD);
+    geom = xRCsg.makeCsg().translate([0,-basW/2,basH])// cyl.union([cube0,cube1]).translate([0,-basW/2,basH]);
     geom = geom.union(geom.mirroredY());
     geom3 = THREE.CSG.fromCSG(geom);
     var xR0 = new THREE.Mesh(geom3,material);
