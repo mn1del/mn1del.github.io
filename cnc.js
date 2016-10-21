@@ -115,11 +115,12 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xRailCsg);
     var xRails = new THREE.Mesh(geom3,matAluminium);
     base.add(xRails);  
-    xRails.translateZ(baseObj.thickness);
+    xRails.position.set(0,xRailObj.width/2,baseObj.thickness);
     //xLinBears
     geom3 = THREE.CSG.fromCSG(xLinBearCsg);
     var xLinBears = new THREE.Mesh(geom3,matAluminium);
     xRails.add(xLinBears);
+    xLinBears.position.set(0,0,xRailObj.railZPos - xLinBearObj.railZPos);
                                      
     // Make base
 //     var geom = baseObj.makeCsg().center("y");
