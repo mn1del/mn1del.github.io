@@ -53,11 +53,11 @@ function init() {
     //create camera (global scope)
     //and add to scene
     camera = new THREE.PerspectiveCamera( 75, container.offsetWidth / container.offsetHeight, 1, 3000 );
-    camera.position.y = -1000;
-    camera.lookAt(new THREE.Vector3(0,0,0));
+    //camera.position.y = -1000;
+    //camera.lookAt(new THREE.Vector3(0,0,0));
     //camera.position.z = 200;
     scene.add( camera );
-/*
+
     //add TrackBall controls to the camera
     controls = new THREE.TrackballControls( camera);
     controls.position0.set( -200, -850, 400 ); // set a new desired position
@@ -74,7 +74,6 @@ function init() {
     controls.minDistance = 1.1;
     controls.maxDistance = 10000;
     controls.keys = [ 16, 17, 18 ]; // [ rotateKey, zoomKey, panKey ]
-  */
 
     //create light(s)
     var dirLight = new THREE.DirectionalLight(colWhite , 0.95);
@@ -125,8 +124,8 @@ function animate() {
     //var delta = clock.getDelta();
     requestAnimationFrame( animate );    
 
-    //camera.up.set(0,0,1);
-    //controls.update();
+    camera.up.set(0,0,1);
+    controls.update();
     render();
     
 }
