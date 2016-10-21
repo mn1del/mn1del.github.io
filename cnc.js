@@ -110,12 +110,12 @@ function init() {
     //base                                 
     geom3 = THREE.CSG.fromCSG(baseCsg);
     var base = new THREE.Mesh(geom3,matConcrete);
-    scene.add(base);  
-                                     
+    scene.add(base);                                       
     //xRails
     geom3 = THREE.CSG.fromCSG(xRailCsg);
     var xRails = new THREE.Mesh(geom3,matAluminium);
-    base.add(xRails);                                 
+    base.add(xRails);  
+    xRails.translateZ(baseObj.thickness);
     //xLinBears
     geom3 = THREE.CSG.fromCSG(xLinBearCsg);
     var xLinBears = new THREE.Mesh(geom3,matAluminium);
