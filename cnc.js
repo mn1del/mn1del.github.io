@@ -54,6 +54,7 @@ function init() {
     //and add to scene
     camera = new THREE.PerspectiveCamera( 75, container.offsetWidth / container.offsetHeight, 1, 3000 );
     camera.position.y = -1000;
+    camera.target.set(0,0,0);
     //camera.position.z = 200;
     scene.add( camera );
 /*
