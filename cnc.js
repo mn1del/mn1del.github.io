@@ -99,7 +99,7 @@ function init() {
     //make CSGs, with multiple copies where necessary
     var baseCsg = baseObj.makeCsg();
     var xRailCsg = xRailObj.makeCsg();
-    xRailCsg = xRailCsg.union(xRailCsg.translate([0,baseObj.width - xRailObj.width,0]);
+    xRailCsg = xRailCsg.union(xRailCsg.translate([0,baseObj.width - xRailObj.width,0]));
     var xLinBearCsg = xLinBearObj.makeCsg();
     xLinBearCsg = xLinBearCsg.union([xLinBearCsg.translate([gSL - xLinBearObj.length,0,0]),
                                      xLinBearCsg.translate([gSL - xLinBearObj.length,baseObj.width - xLinBearObj.width,0]),
