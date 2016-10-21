@@ -35,6 +35,8 @@ function init() {
     var xLBH = 40;
     var xLBD = 20;
     var xLBI = 10;
+    
+    var gSL = 300; //gantry side length
 
     //html container div - to house the WebGL content
     //already made in index.html... an alternative would be to make on the fly here
@@ -84,33 +86,62 @@ function init() {
     var pointLight = new THREE.PointLight(colWhite , 5, 50);
     pointLight.position.set(10, 20, -10);
     scene.add(pointLight);
-
+    
+    //make materials
+    var matConcrete = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
+    var matAluminium = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
+    
+    //Make part objects (from shop.js)
+    var baseObj = new shopBase(basL,basW,basH); 
+    var xRailObj = new shopSuppRail(xRL,xRD); 
+    var xLinBearObj = new shopOpenLinBear(xRD);
+    
+    //make CSGs, with multiple copies where necessary
+    var baseCsg = baseObj.makeCsg();
+    var xRailCsg = xRailObj.makeCsg();
+    xRailCsg = xRailCsg.union(xRailCsg.translate([0,baseObj.width - xRailObj.width,0]);
+    var xLinBearCsg = xLinBearObj.makeCsg();
+    xLinBearCsg = xLinBearCsg.union([xLinBearCsg.translate([gSL - xLinBearObj.length,0,0]),
+                                     xLinBearCsg.translate([gSL - xLinBearObj.length,baseObj.width - xLinBearObj.width,0]),
+                                     xLinBearCsg.translate([0,baseObj.width - xLinBearObj.width,0]));
+                                     
+    //make THREE meshes, assemble and position                                     
+    var geom3;
+    //base                                 
+    geom3 = THREE.CSG.fromCSG(baseCsg);
+    var base = new THREE.Mesh(geom3,matConcrete);
+    scene.add(base);  
+                                     
+    //xRails
+    geom3 = THREE.CSG.fromCSG(baseCsg);
+    var xRails = new THREE.Mesh(geom3,matAluminium);
+    base.add(xRails);                                 
+    //xLinBears
+    geom3 = THREE.CSG.fromCSG(xLinBearCsg);
+    var xLinBears = new THREE.Mesh(geom3,matAluminium);
+    xRails.add(xLinBears);
+                                     
     // Make base
-    var material = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
-    var base = new shopBase(basL,basW,basH); //from shop.js
-    var geom = base.makeCsg().center("y");
-    var geom3 = THREE.CSG.fromCSG(geom);
-    base = new THREE.Mesh(geom3,material);
-    scene.add(base);
+//     var geom = baseObj.makeCsg().center("y");
+//     var geom3 = THREE.CSG.fromCSG(geom);
+//     base = new THREE.Mesh(geom3,matConcrete);
+//     scene.add(base);
 
     //make xR
-    material = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
-    var xRail = new shopSuppRail(xRL,xRD); //from shop.js
-    geom = xRail.makeCsg().translate([0,-basW/2 + xRail.width/2,basH]);
-    geom = geom.union(geom.mirroredY());
-    geom3 = THREE.CSG.fromCSG(geom);
-    var xR0 = new THREE.Mesh(geom3,material);
+//     geom = xRailObj.makeCsg().translate([0,-basW/2 + xRailObj.width/2,basH]);
+//     geom = geom.union(geom.mirroredY());
+//     geom3 = THREE.CSG.fromCSG(geom);
+//     var xR0 = new THREE.Mesh(geom3,matAluminium);
     //var xR1 = xR0.clone(false);
     //xR1.position.set(0,basW,0);
     
     //make xLinBear
-    var xLinBear = new shopOpenLinBear(xRD);
-    geom = xLinBear.makeCsg().translate([0,0,xRail.railZPos - xLinBear.railZPos])
-    geom3 = THREE.CSG.fromCSG(geom);
-    var xLB = new THREE.Mesh(geom3,material);
+//     geom = xLinBearObj.makeCsg().translate([0,0,xRailObj.railZPos - xLinBearObj.railZPos])
+//     geom3 = THREE.CSG.fromCSG(geom);
+//     var xLB = new THREE.Mesh(geom3,matAluminium);
     
-    xR0.add(xLB);
-    base.add(xR0);
+//     xR0.add(xLB);
+//     base.add(xR0);
     //xR0.add(ranSh);
 
 }
