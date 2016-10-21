@@ -103,7 +103,7 @@ function init() {
     var xLinBearCsg = xLinBearObj.makeCsg();
     xLinBearCsg = xLinBearCsg.union([xLinBearCsg.translate([gSL - xLinBearObj.length,0,0]),
                                      xLinBearCsg.translate([gSL - xLinBearObj.length,baseObj.width - xLinBearObj.width,0]),
-                                     xLinBearCsg.translate([0,baseObj.width - xLinBearObj.width,0]));
+                                     xLinBearCsg.translate([0,baseObj.width - xLinBearObj.width,0])]);
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
