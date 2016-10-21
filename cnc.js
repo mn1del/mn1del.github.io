@@ -86,19 +86,6 @@ function init() {
     pointLight.position.set(10, 20, -10);
     scene.add(pointLight);
 
-    //obj tree
-    //var base = new THREE.Object3D();
-    //scene.add(base);
-        //var xR = new THREE.Object3D();
-            //base.add(xR);
-        //linear bearing
-        //var linBear = new THREE.Object3D();
-            //xR.add(linBear);
-            //x carriage angle
-            //var xCA = new THREE.Object3D();
-            //linBear.add(xCA);
-
-
     // Make base
     var material = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
     var geom = new CSG.cube({corner1:[0,0,0],corner2:[basL,basW,basH]}).center("y");
@@ -131,11 +118,6 @@ function init() {
     base.add(xR0);
     xR0.add(ranSh);
 
-    //test rotation... just to check object hierarchy
-    //base = base.rotateY(THREE.Math.degToRad(45));
-    //base.rotation.y = (THREE.Math.degToRad(45));
-    //base.rotation.set(new THREE.Euler( 0, THREE.Math.degToRad(45), 0, 'XYZ' );
-
 }
 
 //animation loop
@@ -143,7 +125,7 @@ function animate() {
     //var delta = clock.getDelta();
     requestAnimationFrame( animate );    
 
-    camera.up.set(0,0,1);
+    //camera.up.set(0,0,1);
     //controls.update();
     render();
     
