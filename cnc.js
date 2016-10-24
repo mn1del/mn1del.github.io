@@ -38,9 +38,9 @@ function init() {
     
     //side bed (which the xRails and x ballscrew are seated on
     var sideBedL = basL;
-    var sideBedW = 150;
+    var sideBedW = 75;
     var sideBedH = 15;
-    var sideBedO = (xCAW - xCAT); //amount the sideBed overhangs the sides of the base by. Assumes inset by inner width of xCarAngl - for easy measuring
+    var sideBedO = 0;(xCAW - xCAT); //amount the sideBed overhangs the sides of the base by. Assumes inset by inner width of xCarAngl - for easy measuring
     
     //x rail
     var xRL = 1900;
@@ -135,10 +135,10 @@ function init() {
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([0,yRailObj.length - xLinBearObj.width,0])).center("y");
     var xCarAngCsg = xCarAngObj.makeCsg();
         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,yRailObj.length + 2*xCAT,0])).center("y");
-    var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
-        xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
-    var xBScrwCsg = xBScrwObj.makeCsg();
-        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
+//     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
+//         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
+//     var xBScrwCsg = xBScrwObj.makeCsg();
+//         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
@@ -166,16 +166,16 @@ function init() {
     var xCarAng = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(xCarAng);
     xCarAng.position.set(0,-xCAT,xLinBearObj.height);
-    //x ballscrew fixed support
-    geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
-    var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-    sideBed.add(xBScrwFixSupp);  
-    xBScrwFixSupp.position.set(0,0,sideBedObj.thickness);
-    //x ballscrew
-    geom3 = THREE.CSG.fromCSG(xBScrwCsg);
-    var xBScrw = new THREE.Mesh(geom3,matAluminium);
-    xBScrwFixSupp.add(xBScrw);  
-    xBScrw.position.set(xBScrwFixSuppObj.thick -xBScrwObj.threadStart,0,xBScrwFixSuppObj.bscrewZPos);
+//     //x ballscrew fixed support
+//     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
+//     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+//     sideBed.add(xBScrwFixSupp);  
+//     xBScrwFixSupp.position.set(0,0,sideBedObj.thickness);
+//     //x ballscrew
+//     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
+//     var xBScrw = new THREE.Mesh(geom3,matAluminium);
+//     xBScrwFixSupp.add(xBScrw);  
+//     xBScrw.position.set(xBScrwFixSuppObj.thick -xBScrwObj.threadStart,0,xBScrwFixSuppObj.bscrewZPos);
     
     // Make base
 //     var geom = baseObj.makeCsg().center("y");
