@@ -119,6 +119,7 @@ function init() {
     var xBScrwObj = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
     var xCarAngObj = shopAluAngle(xCAW,xCAH,xCAT,xCAL);
+    console.log ("angle: " + xCarAngObj.innerWidth + ", and " + xCarAngObj.innerHeight);
     var yRailObj = new shopSbrxx(yRL,yRD); 
     
     //make CSGs, and where applicable copies, to be merged into a single geometry
