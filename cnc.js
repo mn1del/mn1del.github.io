@@ -125,7 +125,7 @@ function init() {
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
     var sideBedCsg = sideBedObj.makeCsg();
-        sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,baseObj.width - sideBedCsg.width + 2*sideBedO,0])); 
+        sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,baseObj.width - sideBedObj.width + 2*sideBedO,0])); 
         sideBedCsg = sideBedCsg.center("y");
     var xRailCsg = xRailObj.makeCsg();
         xRailCsg = xRailCsg.union(xRailCsg.translate([0,yRailObj.length - xLinBearObj.width,0])).center("y"); //outside of linear bearings set equal to yRail length
