@@ -134,7 +134,7 @@ function init() {
     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
         xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
     var xBScrwCsg = xBScrwObj.makeCsg();
-        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).mirroredX().center("y");
+        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
