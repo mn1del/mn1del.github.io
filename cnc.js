@@ -7,12 +7,6 @@ var camera, cameraTarget, scene, renderer, controls;
 init();
 animate();
 
-function dims(){
-    this.basL = 2000;
-    this.basW = 1100;
-
-}
-
 function init() {
     //define a few colors
     var colWhite = new THREE.Color("rgb(100%, 100%, 100%)");
@@ -78,7 +72,7 @@ function init() {
 
     //create camera (global scope)
     //and add to scene
-    camera = new THREE.PerspectiveCamera( 75, container.offsetWidth / container.offsetHeight, 1, 3000 );
+    camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 3000 );
     //camera.position.y = -1000;
     //camera.lookAt(new THREE.Vector3(0,0,0));
     //camera.position.z = 200;
