@@ -16,7 +16,7 @@ function dims(){
 function init() {
     //define a few colors
     var colWhite = new THREE.Color("rgb(100%, 100%, 100%)");
-    var colMetal = new THREE.Color("rgb(90%, 90%, 90%)");
+    var colMetal = new THREE.Color("rgb(70%, 70%, 70%)");
     var colConcrete = new THREE.Color("rgb(30%, 30%, 30%)");
 
     //make materials
@@ -166,6 +166,16 @@ function init() {
     var xCarAng = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(xCarAng);
     xCarAng.position.set(0,-xCAT,xLinBearObj.height);
+    //x ballscrew fixed support
+    geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
+    var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+    sideBed.add(xBScrwFixSupp);  
+    xBScrwFixSupp.position.set(0,0,sideBedObj.thickness);
+    //x ballscrew
+    geom3 = THREE.CSG.fromCSG(xBScrwCsg);
+    var xBScrw = new THREE.Mesh(geom3,matAluminium);
+    xBScrwFixSupp.add(xBScrw);  
+    xBScrw.position.set(0,0,xBScrewFixSuppObj.bscrewZPos);
     
     // Make base
 //     var geom = baseObj.makeCsg().center("y");
