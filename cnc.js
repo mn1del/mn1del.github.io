@@ -73,7 +73,7 @@ function init() {
     //create camera (global scope)
     //and add to scene
     camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 10000 );
-    //camera.position.y = -1000;
+    camera.position.y = -1500;
     //camera.lookAt(new THREE.Vector3(0,0,0));
     //camera.position.z = 200;
     scene.add( camera );
@@ -119,7 +119,8 @@ function init() {
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
     var sideBedCsg = sideBedObj.makeCsg();
-        sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,baseObj.width - sideBedObj.width + 2*sideBedO,0])).center("y"); 
+        sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,baseObj.width - sideBedObj.width + 2*sideBedO,0])).center("y");
+        sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,0,-baseObj.thickness - sideBedObj.thickness]));
     var xRailCsg = xRailObj.makeCsg();
         xRailCsg = xRailCsg.union(xRailCsg.translate([0,baseObj.width - xRailObj.width,0])).center("y"); //outside of linear bearings set equal to yRail length
     var xLinBearCsg = xLinBearObj.makeCsg();
@@ -127,10 +128,10 @@ function init() {
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([0,baseObj.width - xRailObj.width,0])).center("y");
     var xCarAngCsg = xCarAngObj.makeCsg();
         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
-//     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
-//         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
-//     var xBScrwCsg = xBScrwObj.makeCsg();
-//         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,yRailObj.length + xBScrwFixSuppObj.width,0])).center("y");
+    var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
+        xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredZ();
+    var xBScrwCsg = xBScrwObj.makeCsg();
+        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y");
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
@@ -158,55 +159,28 @@ function init() {
     var xCarAng = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(xCarAng);
     xCarAng.position.set(0,-xCAT,xLinBearObj.height);
-//     //x ballscrew fixed support
-//     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
-//     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-//     sideBed.add(xBScrwFixSupp);  
-//     xBScrwFixSupp.position.set(0,0,sideBedObj.thickness);
-//     //x ballscrew
-//     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
-//     var xBScrw = new THREE.Mesh(geom3,matAluminium);
-//     xBScrwFixSupp.add(xBScrw);  
-//     xBScrw.position.set(xBScrwFixSuppObj.thick -xBScrwObj.threadStart,0,xBScrwFixSuppObj.bscrewZPos);
-    
-    // Make base
-//     var geom = baseObj.makeCsg().center("y");
-//     var geom3 = THREE.CSG.fromCSG(geom);
-//     base = new THREE.Mesh(geom3,matConcrete);
-//     scene.add(base);
-
-    //make xR
-//     geom = xRailObj.makeCsg().translate([0,-basW/2 + xRailObj.width/2,basH]);
-//     geom = geom.union(geom.mirroredY());
-//     geom3 = THREE.CSG.fromCSG(geom);
-//     var xR0 = new THREE.Mesh(geom3,matAluminium);
-    //var xR1 = xR0.clone(false);
-    //xR1.position.set(0,basW,0);
-    
-    //make xLinBear
-//     geom = xLinBearObj.makeCsg().translate([0,0,xRailObj.railZPos - xLinBearObj.railZPos])
-//     geom3 = THREE.CSG.fromCSG(geom);
-//     var xLB = new THREE.Mesh(geom3,matAluminium);
-    
-//     xR0.add(xLB);
-//     base.add(xR0);
-    //xR0.add(ranSh);
-
+    //x ballscrew fixed support
+    geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
+    var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+    sideBed.add(xBScrwFixSupp);  
+    xBScrwFixSupp.position.set(0,0,-sideBedObj.thickness);
+    //x ballscrew
+    geom3 = THREE.CSG.fromCSG(xBScrwCsg);
+    var xBScrw = new THREE.Mesh(geom3,matAluminium);
+    xBScrwFixSupp.add(xBScrw);  
+    xBScrw.position.set(xBScrwFixSuppObj.thick -xBScrwObj.threadStart,0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
 function animate() {
     //var delta = clock.getDelta();
     requestAnimationFrame( animate );    
-
     camera.up.set(0,0,1);
     controls.update();
     render();
-    
 }
 
 //render function
 function render() {
-
     renderer.render( scene, camera );
 }
