@@ -55,8 +55,8 @@ function init() {
     var gSX = 100; //x-location of the gantry
     
     //y rail
-    var xRL = 1004;
-    var xRD = 16;
+    var yRL = 1004;
+    var yRD = 16;
 
     //y ballscrew
     var yBSD = 16;
