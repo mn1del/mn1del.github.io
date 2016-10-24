@@ -130,11 +130,11 @@ function init() {
     var xCarAngCsg = xCarAngObj.makeCsg();
         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
-        xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredZ();
+        xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
         xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
     var xBScrwCsg = xBScrwObj.makeCsg();
-        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y");
+        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
@@ -166,7 +166,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
     sideBed.add(xBScrwFixSupp);  
-    xBScrwFixSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
+    xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,-baseObj.thickness -sideBedObj.thickness);
     //x ballscrew floating support
     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
@@ -176,7 +176,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
     xBScrwFixSupp.add(xBScrw);  
-    xBScrw.position.set(xBScrwFixSuppObj.thick -xBScrwObj.threadStart,0,-xBScrwFixSuppObj.bscrewZPos);
+    xBScrw.position.set(xBScrwObj.length + xBScrwFltSuppObj.thick - (xBScrwObj.length - xBScrwObj.threadEnd),0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
