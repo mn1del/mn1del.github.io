@@ -112,6 +112,7 @@ function init() {
     var xLinBearObj = new shopSbrxxuu(xRD);
     var xBScrwObj = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
+    var xBScrwFltSuppObj = new shopBfxx(xBSD);
     var xCarAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xCAL);
     var yRailObj = new shopSbrxx(yRL,yRD); 
     
@@ -130,6 +131,8 @@ function init() {
         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredZ();
+    var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
+        xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
     var xBScrwCsg = xBScrwObj.makeCsg();
         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y");
                                      
@@ -164,6 +167,11 @@ function init() {
     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
     sideBed.add(xBScrwFixSupp);  
     xBScrwFixSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
+    //x ballscrew floating support
+    geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
+    var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
+    sideBed.add(xBScrwFltSupp);  
+    xBScrwFltSupp.position.set(baseObj.length - xBScrwFltSuppObj.thick,0,-baseObj.thickness -sideBedObj.thickness);
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
