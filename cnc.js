@@ -175,7 +175,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
     xBScrwFixSupp.add(xBScrw);  
-    xBScrw.position.set(0,0,xBScrewFixSuppObj.bscrewZPos);
+    xBScrw.position.set(0,0,xBScrwFixSuppObj.bscrewZPos);
     
     // Make base
 //     var geom = baseObj.makeCsg().center("y");
