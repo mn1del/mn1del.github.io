@@ -73,7 +73,7 @@ function init() {
     
     //create scene (global scope)
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = colWhite ;//new THREE.Color( 0xffffff );
     scene.add(new THREE.AxisHelper(3000)); //axis helper
 
     //create camera (global scope)
