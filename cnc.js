@@ -40,7 +40,7 @@ function init() {
     var sideBedL = basL;
     var sideBedW = 150;
     var sideBedH = 15;
-    var sideBedO = xCAW - xCAT; //amount the sideBed overhangs the sides of the base by. Assumes inset by inner width of xCarAngl - for easy measuring
+    var sideBedO = (xCAW - xCAT); //amount the sideBed overhangs the sides of the base by. Assumes inset by inner width of xCarAngl - for easy measuring
     
     //x rail
     var xRL = 1900;
