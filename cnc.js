@@ -175,8 +175,8 @@ function init() {
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
-    xBScrwFixSupp.add(xBScrw);  
-    xBScrw.position.set(0,0,-xBScrwFixSuppObj.bscrewZPos);
+    xBScrwFltSupp.add(xBScrw);  
+    xBScrw.position.set(xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
