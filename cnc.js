@@ -134,7 +134,7 @@ function init() {
     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
         xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
     var xBScrwCsg = xBScrwObj.makeCsg();
-        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
+        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).mirroredX();
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
@@ -171,7 +171,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
     sideBed.add(xBScrwFltSupp);  
-    xBScrwFltSupp.position.set(baseObj.length - xBScrwFltSuppObj.thick,0,-baseObj.thickness -sideBedObj.thickness);
+    xBScrwFltSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
