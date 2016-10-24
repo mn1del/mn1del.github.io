@@ -130,7 +130,7 @@ function init() {
         xRailCsg = xRailCsg.union(xRailCsg.translate([0,baseObj.width - xRailObj.width,0])).center("y"); //outside of linear bearings set equal to yRail length
     var xLinBearCsg = xLinBearObj.makeCsg();
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([gSL - xLinBearObj.length,0,0])); 
-        xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([0,baseObj.length - xRailObj.width,0])).center("y");
+        xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([0,baseObj.width - xRailObj.width,0])).center("y");
     var xCarAngCsg = xCarAngObj.makeCsg();
         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
 //     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
