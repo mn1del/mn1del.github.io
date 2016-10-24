@@ -32,7 +32,7 @@ function init() {
     
     //x carriage angle
     var xCAL = 300;
-    var xCAW = 76.2;
+    var xCAW = 76;//.2;
     var xCAH = 101.6;
     var xCAT = 6.35
     
