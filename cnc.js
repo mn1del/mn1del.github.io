@@ -19,23 +19,24 @@ function init() {
     var colMetal = new THREE.Color("rgb(90%, 90%, 90%)");
     var colConcrete = new THREE.Color("rgb(30%, 30%, 30%)");
 
+    //make materials
+    var matConcrete = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
+    var matAluminium = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
+    
     //dimensions
-    var basL = 2000;
-    var basW = 1100;
+    var basL = 1900;
+    var basW = 1000;
     var basH = 18;
     
+    //x rail
     var xRL = 2000;
     var xRD = 25;
-    var xRSW = 30;
-    var xRSH = 25;
-    var xRSSH = 6;
 
-    var xLBL = 50;
-    var xLBW = 30;
-    var xLBH = 40;
-    var xLBD = 20;
-    var xLBI = 10;
+    //x ballscrew
+    var xBSD = 20;
+    var xBSL = 1900;
     
+    //Gantry side
     var gSL = 300; //gantry side length
 
     //html container div - to house the WebGL content
@@ -87,14 +88,12 @@ function init() {
     pointLight.position.set(10, 20, -10);
     scene.add(pointLight);
     
-    //make materials
-    var matConcrete = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
-    var matAluminium = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
-    
     //Make part objects (from shop.js)
     var baseObj = new shopBase(basL,basW,basH); 
-    var xRailObj = new shopSuppRail(xRL,xRD); 
-    var xLinBearObj = new shopOpenLinBear(xRD);
+    var xRailObj = new shopSbrxx(xRL,xRD); 
+    var xLinBearObj = new shopSbrxxuu(xRD);
+    var xBScrw = new shopRMxx05(xBSD, xBSL);
+    var xBScrwFixSupp = new shopBkxx(xBSD);
     
     //make CSGs, with multiple copies where necessary
     var baseCsg = baseObj.makeCsg();
