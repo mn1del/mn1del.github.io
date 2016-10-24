@@ -176,7 +176,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
     xBScrwFltSupp.add(xBScrw);  
-    xBScrw.position.set(xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
+    xBScrw.position.set(xBScrw.length + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
