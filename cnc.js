@@ -32,7 +32,7 @@ function init() {
     
     //x carriage angle
     var xCAL = 300;
-    var xCAW = 76;//.2;
+    var xCAW = 76.2;
     var xCAH = 101.6;
     var xCAT = 6.35
     
@@ -118,8 +118,7 @@ function init() {
     var xLinBearObj = new shopSbrxxuu(xRD);
     var xBScrwObj = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
-    var xCarAngObj = shopAluAngle(xCAW,xCAH,xCAT,xCAL);
-    console.log ("angle: " + xCarAngObj.inWidth + ", and " + xCarAngObj.inHeight);
+    var xCarAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xCAL);
     var yRailObj = new shopSbrxx(yRL,yRD); 
     
     //make CSGs, and where applicable copies, to be merged into a single geometry
