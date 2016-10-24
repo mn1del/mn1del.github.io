@@ -29,8 +29,8 @@ function init() {
     var basH = 18;
     
     //x rail
-    var xRL = 2000;
-    var xRD = 25;
+    var xRL = 1900;
+    var xRD = 20;
 
     //x ballscrew
     var xBSD = 20;
