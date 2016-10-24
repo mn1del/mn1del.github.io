@@ -36,6 +36,12 @@ function init() {
     var xBSD = 20;
     var xBSL = 1900;
     
+    //x carriage angle
+    var xCAL = 300;
+    var xCAW = 76.2;
+    var xCAH = 101.6;
+    var xCAT = 6.35
+    
     //Gantry side
     var gSL = 300; //gantry side length
 
@@ -89,11 +95,12 @@ function init() {
     scene.add(pointLight);
     
     //Make part objects (from shop.js)
-    var baseObj = new shopBase(basL,basW,basH); 
+    var baseObj = new shopSheet(basL,basW,basH); 
     var xRailObj = new shopSbrxx(xRL,xRD); 
     var xLinBearObj = new shopSbrxxuu(xRD);
-    var xBScrw = new shopRmxx05(xBSD, xBSL);
-    var xBScrwFixSupp = new shopBkxx(xBSD);
+    var xBScrwObj = new shopRmxx05(xBSD, xBSL);
+    var xBScrwFixSuppObj = new shopBkxx(xBSD);
+    var xCarAngObj = shopAluAngle(xCAW,xCAH,xCAT,xCAL);
     
     //make CSGs, with multiple copies where necessary
     var baseCsg = baseObj.makeCsg();
