@@ -92,7 +92,7 @@ function init() {
     var baseObj = new shopBase(basL,basW,basH); 
     var xRailObj = new shopSbrxx(xRL,xRD); 
     var xLinBearObj = new shopSbrxxuu(xRD);
-    var xBScrw = new shopRMxx05(xBSD, xBSL);
+    var xBScrw = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSupp = new shopBkxx(xBSD);
     
     //make CSGs, with multiple copies where necessary
