@@ -163,7 +163,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
     sideBed.add(xBScrwFixSupp);  
-    xBScrwFixSupp.position.set(0,0,-sideBedObj.thickness);
+    xBScrwFixSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
