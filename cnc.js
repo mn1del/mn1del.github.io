@@ -72,7 +72,7 @@ function init() {
 
     //create camera (global scope)
     //and add to scene
-    camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 6000 );
+    camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 10000 );
     //camera.position.y = -1000;
     //camera.lookAt(new THREE.Vector3(0,0,0));
     //camera.position.z = 200;
@@ -80,7 +80,7 @@ function init() {
 
     //add TrackBall controls to the camera
     controls = new THREE.TrackballControls( camera);
-    controls.position0.set( -200, -850, 400 ); // set a new desired position
+    controls.position0.set( -200, -1500, 400 ); // set a new desired position
     controls.target0.set(0,0,100);
     controls.up0.set( 0, 0, 1 ); // set a new up vector
     controls.reset();
