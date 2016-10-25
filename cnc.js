@@ -120,7 +120,7 @@ function init() {
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
     var xBScrwFltSuppObj = new shopBfxx(xBSD);
     var xBnutObj = new shopBallnut(xBSD);
-    var xCarAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xCAL);
+    var xBnutMtObj = new shopBallnutMount(xBSD);
     var yRailObj = new shopSbrxx(yRL,yRD);
 
     //make CSGs, and where applicable copies, to be merged into a single geometry
@@ -142,6 +142,8 @@ function init() {
         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
     var xBnutCsg = xBnutObj.makeCsg();
         xBnutCsg = xBnutCsg.union(xBnutCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
+    var xBnutMtCsg = xBnutMtObj.makeCsg();
+        xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -184,6 +186,11 @@ function init() {
     var xBnut = new THREE.Mesh(geom3,matAluminium);
     xBScrw.add(xBnut);
     xBnut.position.set(gSX + gSL/2 - xBnutObj.length/2 - xBScrwObj.length,0,0);
+    //x ballnut
+    geom3 = THREE.CSG.fromCSG(xBnutMtCsg);
+    var xBnutMt = new THREE.Mesh(geom3,matAluminium);
+    xBnut.add(xBnutMt);
+    xBnutMt.position.set(xBnutObj.flangeThick,0,0);
 }
 
 //animation loop
