@@ -30,11 +30,10 @@ function init() {
     var xCAH = 101.6;
     var xCAT = 6.35;
 
-    //side bed (which the xRails and x ballscrew are seated on
-    var sideBedL = basL;
-    var sideBedW = 75;
-    var sideBedH = 15;
-    var sideBedO = 0;(xCAW - xCAT); //amount the sideBed overhangs the sides of the base by. Assumes inset by inner width of xCarAngl - for easy measuring
+    //x ballscrew mount (just a piece of melamine)
+    var bSMtL = 150;
+    var bSMtW = 75;
+    var bSMtH = 15;
 
     //x rail
     var xRL = 1900;
@@ -116,6 +115,7 @@ function init() {
     var xRailAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xRAL);
     var xRailObj = new shopSbrxx(xRL,xRD);
     var xLinBearObj = new shopSbrxxuu(xRD);
+    var xBScrwMtObj = new shopSheet(bSMtL,bSMtW,bSMtH);
     var xBScrwObj = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
     var xBScrwFltSuppObj = new shopBfxx(xBSD);
@@ -134,6 +134,9 @@ function init() {
     var xLinBearCsg = xLinBearObj.makeCsg();
         xLinBearCsg = xLinBearCsg.rotateX(90).union(xLinBearCsg.rotateX(90).translate([gSL - xLinBearObj.length,0,0]));
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.rotateX(180).translate([0,baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos),0])).center("y");
+    var xBScrwMtCsg = xBScrwMtObj.makeCsg();
+        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([baseObj.length - xBScrwMtObj.length,0,0]));
+        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([0,baseObj.width - xBScrwMtObj.width - 2*xRailAngObj.width,0])).center("y");
     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
@@ -166,16 +169,21 @@ function init() {
     var xLinBears = new THREE.Mesh(geom3,matAluminium);
     xRails.add(xLinBears);
     xLinBears.position.set(gSX,0,0);
+    //x ballscrew mount
+    geom3 = THREE.CSG.fromCSG(xBScrwMtCsg);
+    var xBScrwMt = new THREE.Mesh(geom3,matAluminium);
+    base.add(xBScrwMt);
+    xBScrwMt.position.set(0,0,-xBScrwMtObj.thickness);
     //x ballscrew fixed support
     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-    base.add(xBScrwFixSupp);
+    xBScrwMt.add(xBScrwFixSupp);
     xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,0);
     //x ballscrew floating support
     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
-    base.add(xBScrwFltSupp);
-    xBScrwFltSupp.position.set(0,0,0);
+    xBScrwMt.add(xBScrwFltSupp);
+//     xBScrwFltSupp.position.set(0,0,0);
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
