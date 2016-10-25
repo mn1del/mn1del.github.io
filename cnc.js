@@ -199,7 +199,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBnutCsg);
     var xBnut = new THREE.Mesh(geom3,matAluminium);
     xBScrw.add(xBnut);  
-    xBnut.position.set(gSX + gSL/2 + xBnutObj.length/2 - xBScrwObj.length,0,-xBScrwFixSuppObj.bscrewZPos);
+    xBnut.position.set(gSX + gSL/2 - xBnutObj.length/2 - xBScrwObj.length,0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
