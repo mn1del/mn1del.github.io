@@ -40,7 +40,7 @@ function init() {
     var xRL = 1900;
     var xRD = 20;
     
-    //x carriage angle
+    //x rail angle
     var xRAL = xRL;
     var xRAW = 50.8;
     var xRAH = 63.5;
@@ -130,8 +130,8 @@ function init() {
 //         sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,baseObj.width - sideBedObj.width + 2*sideBedO,0])).center("y");
 //         sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,0,-baseObj.thickness - sideBedObj.thickness]));
     var xRailAngCsg = xRailAngObj.makeCsg();
-        xRailAngCsg = xRailAngCsg.mirroredY().mirroredZ().translate([0,-xRailAngObj.width,0]);
-        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width,0])).center("y");
+        xRailAngCsg = xRailAngCsg.mirroredY().mirroredZ().translate([0,xRailAngObj.width,0]);
+        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width - -xRailAngObj.width,0])).center("y");
     var xRailCsg = xRailObj.makeCsg();
         xRailCsg = xRailCsg.rotateX(90).union(xRailCsg.rotateX(-90).translate([0,baseObj.width - 2*xRailAngObj.inWidth,0])).center("y"); //outside of linear bearings set equal to yRail length
     var xLinBearCsg = xLinBearObj.makeCsg();
@@ -139,8 +139,8 @@ function init() {
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.rotateX(180).translate([0,baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos),0])).center("y");
 //     var xCarAngCsg = xCarAngObj.makeCsg();
 //         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
-//     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
-//         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
+    var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
+        xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
 //     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
 //         xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
 //     var xBScrwCsg = xBScrwObj.makeCsg();
