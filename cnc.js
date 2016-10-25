@@ -180,13 +180,13 @@ function init() {
     //x ballscrew fixed support
     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-    sideBed.add(xBScrwFixSupp);  
-    xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,-baseObj.thickness -sideBedObj.thickness);
+    base.add(xBScrwFixSupp);  
+    xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,0);
 //     //x ballscrew floating support
     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
-    sideBed.add(xBScrwFltSupp);  
-    xBScrwFltSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
+    base.add(xBScrwFltSupp);  
+    xBScrwFltSupp.position.set(0,0,0);
 //     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
