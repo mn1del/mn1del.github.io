@@ -131,7 +131,7 @@ function init() {
 //         sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,0,-baseObj.thickness - sideBedObj.thickness]));
     var xRailAngCsg = xRailAngObj.makeCsg();
         xRailAngCsg = xRailAngCsg.mirroredY().mirroredZ().translate([0,xRailAngObj.width,0]);
-        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width - -xRailAngObj.width,0])).center("y");
+        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width - xRailAngObj.width,0])).center("y");
     var xRailCsg = xRailObj.makeCsg();
         xRailCsg = xRailCsg.rotateX(90).union(xRailCsg.rotateX(-90).translate([0,baseObj.width - 2*xRailAngObj.inWidth,0])).center("y"); //outside of linear bearings set equal to yRail length
     var xLinBearCsg = xLinBearObj.makeCsg();
