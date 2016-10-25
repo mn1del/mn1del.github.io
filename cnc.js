@@ -135,7 +135,7 @@ function init() {
         xLinBearCsg = xLinBearCsg.rotateX(90).union(xLinBearCsg.rotateX(90).translate([gSL - xLinBearObj.length,0,0]));
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.rotateX(180).translate([0,baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos),0])).center("y");
     var xBScrwMtCsg = xBScrwMtObj.makeCsg();
-        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([baseObj.length - xBScrwMtObj.length,0,0]));
+        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([xBScrwObj.threadLength,0,0]));
         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([0,baseObj.width - xBScrwMtObj.width - 2*xRailAngObj.width,0])).center("y");
     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
