@@ -131,7 +131,7 @@ function init() {
 //         sideBedCsg = sideBedCsg.union(sideBedCsg.translate([0,0,-baseObj.thickness - sideBedObj.thickness]));
     var xRailAngCsg = xRailAngObj.makeCsg();
         xRailAngCsg = xRailAngCsg.mirroredY().mirroredZ().translate([0,xRailAngObj.width,0]);
-        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width - xRailAngObj.width,0])).center("y");
+        xRailAngCsg = xRailAngCsg.union(xRailAngCsg.mirroredY().translate([0,baseObj.width,0])).center("y");
     var xRailCsg = xRailObj.makeCsg();
         xRailCsg = xRailCsg.rotateX(90).union(xRailCsg.rotateX(-90).translate([0,baseObj.width - 2*xRailAngObj.inWidth,0])).center("y"); //outside of linear bearings set equal to yRail length
     var xLinBearCsg = xLinBearObj.makeCsg();
@@ -141,10 +141,10 @@ function init() {
 //         xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,baseObj.width + 2*xCAT,0])).center("y");
     var xBScrwFixSuppCsg = xBScrwFixSuppObj.makeCsg();
         xBScrwFixSuppCsg = xBScrwFixSuppCsg.union(xBScrwFixSuppCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredZ().mirroredX();
-//     var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
-//         xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - xBScrwFltSuppObj.width,0])).center("y").mirroredZ();
-//     var xBScrwCsg = xBScrwObj.makeCsg();
-//         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
+    var xBScrwFltSuppCsg = xBScrwFltSuppObj.makeCsg();
+        xBScrwFltSuppCsg = xBScrwFltSuppCsg.union(xBScrwFltSuppCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredZ();
+    var xBScrwCsg = xBScrwObj.makeCsg();
+        xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y").mirroredX();
                                      
     //make THREE meshes, assemble and position                                     
     var geom3;
@@ -178,20 +178,20 @@ function init() {
 //     xLinBears.add(xCarAng);
 //     xCarAng.position.set(0,-xCAT,xLinBearObj.height);
     //x ballscrew fixed support
-//     geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
-//     var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-//     sideBed.add(xBScrwFixSupp);  
-//     xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,-baseObj.thickness -sideBedObj.thickness);
+    geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
+    var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+    sideBed.add(xBScrwFixSupp);  
+    xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,-baseObj.thickness -sideBedObj.thickness);
 //     //x ballscrew floating support
-//     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
-//     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
-//     sideBed.add(xBScrwFltSupp);  
-//     xBScrwFltSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
+    geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
+    var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
+    sideBed.add(xBScrwFltSupp);  
+    xBScrwFltSupp.position.set(0,0,-baseObj.thickness -sideBedObj.thickness);
 //     //x ballscrew
-//     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
-//     var xBScrw = new THREE.Mesh(geom3,matAluminium);
-//     xBScrwFltSupp.add(xBScrw);  
-//     xBScrw.position.set(xBScrwObj.length + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
+    geom3 = THREE.CSG.fromCSG(xBScrwCsg);
+    var xBScrw = new THREE.Mesh(geom3,matAluminium);
+    xBScrwFltSupp.add(xBScrw);  
+    xBScrw.position.set(xBScrwObj.length + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
 }
 
 //animation loop
