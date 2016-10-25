@@ -171,7 +171,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xLinBearCsg);
     var xLinBears = new THREE.Mesh(geom3,matAluminium);
     xRails.add(xLinBears);
-//     xLinBears.position.set(gSX,0,xRailObj.railZPos - xLinBearObj.railZPos);
+    xLinBears.position.set(gSX,0,0);
     //xCarAng
 //     geom3 = THREE.CSG.fromCSG(xCarAngCsg);
 //     var xCarAng = new THREE.Mesh(geom3,matAluminium);
