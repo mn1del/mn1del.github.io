@@ -49,8 +49,13 @@ function init() {
     var xBSD = 20;
     var xBSL = 1900;
 
-    //Gantry side
+    //Gantry side - top of runner will reference against 
     var gSL = 300; //gantry side length
+    var gSRH = basH/2 + 2*xRAH; //ganSide runner height... goes approximately from top of base to half way up the base thickness
+    var gSTH = gSRH + 600; //ganSide top height... approximately 600mm above surface of the base
+    var gSTW = 120; //top width
+    var gST = 18; //thickness
+    var gSR = gSTW/2; //radius of curved inside corner (of the "L" shaped ganSide)
     var gSX = 100; //x-location of the gantry
 
     //y rail
@@ -122,7 +127,8 @@ function init() {
     var xBnutObj = new shopBallnut(xBSD);
     var xBnutMtObj = new shopBallnutMount(xBSD);
     var yRailObj = new shopSbrxx(yRL,yRD);
-
+    var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
+    
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -147,7 +153,9 @@ function init() {
         xBnutCsg = xBnutCsg.union(xBnutCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
     var xBnutMtCsg = xBnutMtObj.makeCsg();
         xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
-
+    var ganSideCsg = ganSideObj.makeCsg();
+        ganSideCsg = ganSideCsg.union(ganSideCsg.translate([0,baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos) + 2*(xLinBearObj.height - xLinBearObj.railZPos) ,0]);
+    
     //make THREE meshes, assemble and position
     var geom3;
     //base
@@ -183,7 +191,6 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
     var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
     xBScrwMt.add(xBScrwFltSupp);
-//     xBScrwFltSupp.position.set(0,0,0);
     //x ballscrew
     geom3 = THREE.CSG.fromCSG(xBScrwCsg);
     var xBScrw = new THREE.Mesh(geom3,matAluminium);
@@ -199,6 +206,12 @@ function init() {
     var xBnutMt = new THREE.Mesh(geom3,matAluminium);
     xBnut.add(xBnutMt);
     xBnutMt.position.set(xBnutObj.flangeThick,0,0);
+    //gantry sides
+    geom3 = THREE.CSG.fromCSG(ganSideCsg);
+    var ganSides = new THREE.Mesh(geom3,matAluminium);
+    xLinBears.add(ganSides);
+    ganSides.rotation.x = THREE.Math.degToRad(-90);
+    
 }
 
 //animation loop
