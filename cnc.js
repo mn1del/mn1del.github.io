@@ -52,12 +52,16 @@ function init() {
     //Gantry side - top of runner will reference against 
     var gSL = 400; //gantry side length
     var gSRH = basH/2 + 2*xRAH; //ganSide runner height... goes approximately from top of base to half way up the base thickness
-    var gSTH = gSRH + 600; //ganSide top height... approximately 600mm above surface of the base
+    var gSTH = gSRH + 500; //ganSide top height... approximately 500mm above surface of the base
     var gSTW = 120; //top width
     var gST = 18; //thickness
-    var gSR = gSTW/2; //radius of curved inside corner (of the "L" shaped ganSide)
+    var gSR = gSTW; //radius of curved inside corner (of the "L" shaped ganSide)
     var gSX = 100; //x-location of the gantry
-
+    
+    //Gantry back
+    var gBH = (gSH - gSRH)/2;
+    var gBT = 18;
+    
     //y rail
     var yRL = 1004;
     var yRD = 16;
@@ -65,7 +69,13 @@ function init() {
     //y ballscrew
     var yBSD = 16;
     var yBSL = 1000;
-
+    
+    //project helper functions
+    //returns span between inside edges of gantry sides
+    function ganSideInSpan() {
+        return baseObj.width + 2*gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos);
+    }
+    
     //html container div - to house the WebGL content
     //already made in index.html... an alternative would be to make on the fly here
     var container = document.getElementById("container");
@@ -128,6 +138,7 @@ function init() {
     var xBnutMtObj = new shopBallnutMount(xBSD);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
+    var ganBackObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
@@ -156,8 +167,11 @@ function init() {
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
             ganSideCsg.translate([0,
-                baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
+                ganSideInSpan - gST,
+//                 baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
+    var ganBackCsg = ganBackObj.makeCsg().translate([gSL,-gBT,gSTH - gBH]);
+        ganBackCsg = ganBackCsg.rotateZ(90).center("y");
     
     //make THREE meshes, assemble and position
     var geom3;
@@ -214,6 +228,11 @@ function init() {
     var ganSides = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(ganSides);
     ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
+    //gantry back
+    geom3 = THREE.CSG.fromCSG(ganBackCsg);
+    var ganBack = new THREE.Mesh(geom3,matAluminium);
+    ganSides.add(ganBack);
+//     ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
     
 }
 
