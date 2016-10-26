@@ -50,7 +50,7 @@ function init() {
     var xBSL = 1900;
 
     //Gantry side - top of runner will reference against 
-    var gSL = 300; //gantry side length
+    var gSL = 400; //gantry side length
     var gSRH = basH/2 + 2*xRAH; //ganSide runner height... goes approximately from top of base to half way up the base thickness
     var gSTH = gSRH + 600; //ganSide top height... approximately 600mm above surface of the base
     var gSTW = 120; //top width
