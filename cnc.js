@@ -10,6 +10,7 @@ animate();
 function init() {
     //define a few colors
     var colWhite = new THREE.Color("rgb(100%, 100%, 100%)");
+    var colBrown = new THREE.Color("rgb(210,180,140)");
     var colMetal = new THREE.Color("rgb(70%, 70%, 70%)");
     var colConcrete = new THREE.Color("rgb(30%, 30%, 30%)");
 
@@ -17,6 +18,7 @@ function init() {
     var matConcrete = new THREE.MeshPhongMaterial( { color: colConcrete , specular: 0x111111, shininess: 50 } );
     var matAluminium = new THREE.MeshPhongMaterial( { color: colMetal , specular: 0x111111, shininess: 200 } );
     var matMelamine = new THREE.MeshPhongMaterial( { color: colWhite , specular: 0x111111, shininess: 100 } );
+    var matPly = new THREE.MeshPhongMaterial( { color: colBrown , specular: 0x111111, shininess: 0 } );
 
     //dimensions
     //main base
@@ -49,7 +51,10 @@ function init() {
     var xBSD = 20;
     var xBSL = 1900;
 
-    //Gantry side - top of runner will reference against 
+    //x drive arm
+    var xDAT = 18;
+
+    //Gantry side - top of runner will reference against
     var gSL = 400; //gantry side length
     var gSRH = basH/2 + 2*xRAH; //ganSide runner height... goes approximately from top of base to half way up the base thickness
     var gSTH = gSRH + 500; //ganSide top height... approximately 500mm above surface of the base
@@ -57,11 +62,11 @@ function init() {
     var gST = 18; //thickness
     var gSR = gSTW; //radius of curved inside corner (of the "L" shaped ganSide)
     var gSX = 100; //x-location of the gantry
-    
+
     //Gantry back
     var gBH = (gSTH - gSRH)/2;
     var gBT = 18;
-    
+
     //y rail
     var yRL = 1004;
     var yRD = 16;
@@ -69,13 +74,13 @@ function init() {
     //y ballscrew
     var yBSD = 16;
     var yBSL = 1000;
-    
+
     //project helper functions
     //returns span between inside edges of gantry sides
     function ganSideInSpan() {
         return baseObj.width - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos);
     }
-    
+
     //html container div - to house the WebGL content
     //already made in index.html... an alternative would be to make on the fly here
     var container = document.getElementById("container");
@@ -117,16 +122,21 @@ function init() {
 
     //create light(s)
     var dirLight = new THREE.DirectionalLight(colWhite , 0.95);
-    dirLight.position.set(-200, -1000, 1000);
+    dirLight.position.set(-200, -300, 1000);
     dirLight.position.normalize();
     scene.add(dirLight);
 
-    var pointLight = new THREE.PointLight(colWhite , 5, 50);
-    pointLight.position.set(10, 20, -10);
-    scene.add(pointLight);
+    var dirLight1 = new THREE.DirectionalLight(colWhite , 0.95);
+    dirLight1.position.set(-200, -300, -1000);
+    dirLight1.position.normalize();
+    scene.add(dirLight1);
+
+/*     var pointLight = new THREE.PointLight(colWhite , 5, 50);
+    pointLight.position.set(10, 20, -1000);
+    scene.add(pointLight); */
 
     //Make part objects (from shop.js)
-    var baseObj = new shopSheet(basL,basW,basH);
+    var baseObj = new shopSlate(basL,basW,basH);
     var xRailAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xRAL);
     var xRailObj = new shopSbrxx(xRL,xRD);
     var xLinBearObj = new shopSbrxxuu(xRD);
@@ -136,10 +146,14 @@ function init() {
     var xBScrwFltSuppObj = new shopBfxx(xBSD);
     var xBnutObj = new shopBallnut(xBSD);
     var xBnutMtObj = new shopBallnutMount(xBSD);
+    var xDriveArmObj = new shopXDriveArm(gSL,(ganSideInSpan() - basW)/2 + xRAW + xBScrwFltSuppObj.width/2 + xBnutMtObj.width/2,xDAT);
+    var xDriveArmAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xDriveArmObj.length);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
     var ganBackObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
-    
+    var ganFrontObj = ganBackObj;
+
+
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -164,15 +178,19 @@ function init() {
         xBnutCsg = xBnutCsg.union(xBnutCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
     var xBnutMtCsg = xBnutMtObj.makeCsg();
         xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
+    var xDriveArmCsg = xDriveArmObj.makeCsg();
+        xDriveArmCsg = xDriveArmCsg.union(xDriveArmCsg.mirroredY().translate([0,ganSideInSpan() ,0])).center("y","x");
+    var xDriveArmAngCsg = xDriveArmAngObj.makeCsg().rotateX(-90).translate([0,0,xRAW]);
+        xDriveArmAngCsg = xDriveArmAngCsg.union(xDriveArmAngCsg.mirroredY().translate([0,ganSideInSpan() ,0])).center("y","x");
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
             ganSideCsg.translate([0,
                 ganSideInSpan() + gST,
 //                 baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
-    var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gSL,gBT,gSTH - gBH]).center("y");
-//         ganBackCsg = ganBackCsg.rotateZ(90).center("y");
-    
+    var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gSL + gBT ,gBT,gSTH - gBH]).center("y");
+    var ganFrontCsg = ganBackCsg.translate([-gST - ganFrontObj.thickness,0,0]);
+
     //make THREE meshes, assemble and position
     var geom3;
     //base
@@ -196,7 +214,7 @@ function init() {
     xLinBears.position.set(gSX,0,0);
     //x ballscrew mount
     geom3 = THREE.CSG.fromCSG(xBScrwMtCsg);
-    var xBScrwMt = new THREE.Mesh(geom3,matAluminium);
+    var xBScrwMt = new THREE.Mesh(geom3,matMelamine);
     base.add(xBScrwMt);
     xBScrwMt.position.set(0,0,-xBScrwMtObj.thickness);
     //x ballscrew fixed support
@@ -217,23 +235,37 @@ function init() {
     geom3 = THREE.CSG.fromCSG(xBnutCsg);
     var xBnut = new THREE.Mesh(geom3,matAluminium);
     xBScrw.add(xBnut);
-    xBnut.position.set(gSX + gSL/2 - xBnutObj.length/2 - xBScrwObj.length,0,0);
-    //x ballnut
+    xBnut.position.set(gSX + gSL/2 - xBnutObj.flangeThick - xBnutMtObj.length/2 - xBScrwObj.length,0,0);
+    //x ballnut mount
     geom3 = THREE.CSG.fromCSG(xBnutMtCsg);
     var xBnutMt = new THREE.Mesh(geom3,matAluminium);
     xBnut.add(xBnutMt);
     xBnutMt.position.set(xBnutObj.flangeThick,0,0);
+    //x drive arm
+    geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
+    var xDriveArm = new THREE.Mesh(geom3,matPly);
+    xBnutMt.add(xDriveArm);
+    xDriveArm.position.set(xBnutMtObj.length/2, 0, -xBnutMtObj.height/2 - xDriveArmObj.thick);
+    //x drive arm angle
+    geom3 = THREE.CSG.fromCSG(xDriveArmAngCsg);
+    var xDriveArmAng = new THREE.Mesh(geom3,matAluminium);
+    xDriveArm.add(xDriveArmAng);
+    xDriveArmAng.position.set(0, 0, -xRAW);
     //gantry sides
     geom3 = THREE.CSG.fromCSG(ganSideCsg);
-    var ganSides = new THREE.Mesh(geom3,matAluminium);
+    var ganSides = new THREE.Mesh(geom3,matPly);
     xLinBears.add(ganSides);
     ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
     //gantry back
     geom3 = THREE.CSG.fromCSG(ganBackCsg);
-    var ganBack = new THREE.Mesh(geom3,matAluminium);
+    var ganBack = new THREE.Mesh(geom3,matPly);
     ganSides.add(ganBack);
-//     ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
-    
+    //gantry front
+    var ganFront = ganBack.clone();
+    ganSides.add(ganFront);
+    ganFront.translateX(-gSTW - gBT);
+
+
 }
 
 //animation loop
