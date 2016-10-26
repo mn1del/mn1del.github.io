@@ -155,10 +155,9 @@ function init() {
         xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
-            ganSideCsg.translate([
-                0,
+            ganSideCsg.translate([0,
                 baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos) + 2*(xLinBearObj.height - xLinBearObj.railZPos),
-                0]));
+                0])).center("y");
     
     //make THREE meshes, assemble and position
     var geom3;
@@ -214,7 +213,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(ganSideCsg);
     var ganSides = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(ganSides);
-    ganSides.rotation.x = THREE.Math.degToRad(-90);
+//     ganSides.rotation.x = THREE.Math.degToRad(-90);
     
 }
 
