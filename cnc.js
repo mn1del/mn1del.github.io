@@ -167,7 +167,7 @@ function init() {
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
             ganSideCsg.translate([0,
-                ganSideInSpan - gST,
+                ganSideInSpan() - gST,
 //                 baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().translate([gSL,-gBT,gSTH - gBH]);
