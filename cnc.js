@@ -59,7 +59,7 @@ function init() {
     var gSX = 100; //x-location of the gantry
     
     //Gantry back
-    var gBH = (gSH - gSRH)/2;
+    var gBH = (gSTH - gSRH)/2;
     var gBT = 18;
     
     //y rail
