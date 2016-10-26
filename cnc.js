@@ -213,7 +213,7 @@ function init() {
     geom3 = THREE.CSG.fromCSG(ganSideCsg);
     var ganSides = new THREE.Mesh(geom3,matAluminium);
     xLinBears.add(ganSides);
-//     ganSides.rotation.x = THREE.Math.degToRad(-90);
+    ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
     
 }
 
