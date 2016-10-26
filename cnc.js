@@ -154,7 +154,11 @@ function init() {
     var xBnutMtCsg = xBnutMtObj.makeCsg();
         xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width  - 2*xRailAngObj.width - xBScrwFixSuppObj.width,0])).center("y");
     var ganSideCsg = ganSideObj.makeCsg();
-        ganSideCsg = ganSideCsg.union(ganSideCsg.translate([0,baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos) + 2*(xLinBearObj.height - xLinBearObj.railZPos) ,0]);
+        ganSideCsg = ganSideCsg.union(
+            ganSideCsg.translate([
+                0,
+                baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos) + 2*(xLinBearObj.height - xLinBearObj.railZPos),
+                0]));
     
     //make THREE meshes, assemble and position
     var geom3;
