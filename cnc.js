@@ -170,8 +170,8 @@ function init() {
                 ganSideInSpan() - gST,
 //                 baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
-    var ganBackCsg = ganBackObj.makeCsg().translate([gSL,-gBT,gSTH - gBH]);
-        ganBackCsg = ganBackCsg.rotateZ(90).center("y");
+    var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gSL,0,gSTH - gBH]).center("y");
+//         ganBackCsg = ganBackCsg.rotateZ(90).center("y");
     
     //make THREE meshes, assemble and position
     var geom3;
