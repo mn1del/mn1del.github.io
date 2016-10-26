@@ -156,7 +156,7 @@ function init() {
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
             ganSideCsg.translate([0,
-                baseObj.width - 2*xRailAngObj.inWidth +2*(xRailObj.railZPos - xLinBearObj.railZPos) + 2*(xLinBearObj.height - xLinBearObj.railZPos),
+                baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
     
     //make THREE meshes, assemble and position
