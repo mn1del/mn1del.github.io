@@ -73,6 +73,7 @@ function init() {
     
     //y lin bear span
     var yLBS = 200;
+    var yLBY = yRL/2 - yLBS/2;
     
     //y ballscrew
     var yBSD = 16;
@@ -199,7 +200,7 @@ function init() {
     var yLinBearCsg = yLinBearObj.makeCsg();
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([yLBS - yLinBearObj.length,0,0]));
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
-        yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
+        yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX();
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -284,7 +285,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yLinBearCsg);
         var yLinBears = new THREE.Mesh(geom3,matAluminium);
         yRails.add(yLinBears);
-        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),0,0);
+        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY,0);
 }
 
 //animation loop
