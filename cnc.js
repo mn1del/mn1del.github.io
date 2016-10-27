@@ -188,7 +188,7 @@ function init() {
 //                 baseObj.width + gST - 2*xRailAngObj.inWidth +2*xRailObj.railZPos + 2*(xLinBearObj.height - xLinBearObj.railZPos),
                 0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
-    var ganFrontCsg = ganBackCsg.translate([-gST - ganFrontObj.thickness,0,0]);
+    var ganFrontCsg = ganBackCsg.mirroredX();
     var yRailCsg = yRailObj.makeCsg().rotateZ(-90);
         yRailCsg = yRailCsg.translate([0,0,gBH - yRailObj.width]);
 
@@ -262,10 +262,10 @@ function init() {
         ganSides.add(ganBack);
         ganBack.position.set(gSL,0,gSTH - gBH);
     //gantry front
-        var ganFront = ganBack.clone();
-        ganFront.rotation.z = THREE.Math.degToRad(180);
+        geom3 = THREE.CSG.fromCSG(ganFrontCsg);
+        var ganFront = new THREE.Mesh(geom3,matPly);
         ganSides.add(ganFront);
-        ganFront.translateX(gSL - gSTW - gBT);
+        ganFront.translateX(gSL - gSTW - gBT,0,gSTH - gBH);
     //y Rails
 //         geom3 = THREE.CSG.fromCSG(yRailCsg);
 //         var yRails = new THREE.Mesh(geom3,matAluminium);
