@@ -265,7 +265,7 @@ function init() {
         var ganFront = ganBack.clone();
         ganFront.rotation.z = THREE.Math.degToRad(180);
         ganSides.add(ganFront);
-        ganFront.translateX(-gSTW - gBT);
+        ganFront.translateX(gSL - gSTW - gBT);
     //y Rails
 //         geom3 = THREE.CSG.fromCSG(yRailCsg);
 //         var yRails = new THREE.Mesh(geom3,matAluminium);
