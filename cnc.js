@@ -189,8 +189,8 @@ function init() {
                 0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
     var ganFrontCsg = ganBackCsg.mirroredX();
-    var yRailCsg = yRailObj.makeCsg().rotateZ(-90);
-        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width]));
+    var yRailCsg = yRailObj.makeCsg().rotateX(-90).rotateZ(90);
+        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
 
     //make THREE meshes, assemble and position
     var geom3;
