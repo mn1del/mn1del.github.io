@@ -278,7 +278,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
         ganFront.add(yRails);
-        yRails.position.set(-gBT,0,yRailCsg.width/2);
+        yRails.position.set(-gBT,0,yRailObj.width/2);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yLinBearCsg);
         var yLinBears = new THREE.Mesh(geom3,matAluminium);
