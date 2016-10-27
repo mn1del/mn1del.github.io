@@ -193,7 +193,8 @@ function init() {
                 0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
     var ganFrontCsg = ganBackCsg.mirroredX();
-    var yRailCsg = yRailObj.makeCsg().rotateX(-90).rotateZ(90);
+    var yRailCsg = yRailObj.makeCsg();
+        yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([-gBT,0,gBH - yRailObj.width + yRailObj.width])).center("y");
     var yLinBearCsg = yLinBearObj.makeCsg();
         yLinBearCsg = yLinBearCsg.rotateZ(90).union(yLinBearCsg.rotateZ(90).translate([yLBS - yLinBearObj.length,0,0]));
