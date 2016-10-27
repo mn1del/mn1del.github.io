@@ -285,7 +285,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yLinBearCsg);
         var yLinBears = new THREE.Mesh(geom3,matAluminium);
         yRails.add(yLinBears);
-        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY,0);
+        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY - yRL/2,0);
 }
 
 //animation loop
