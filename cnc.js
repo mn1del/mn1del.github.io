@@ -195,10 +195,10 @@ function init() {
     var ganFrontCsg = ganBackCsg.mirroredX();
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
-        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width + yRailObj.width])).center("y");
+        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
     var yLinBearCsg = yLinBearObj.makeCsg();
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([yLBS - yLinBearObj.length,0,0]));
-        yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width + yRailObj.width,0]));
+        yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
 
     //make THREE meshes, assemble and position
