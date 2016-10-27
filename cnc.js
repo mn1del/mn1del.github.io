@@ -64,7 +64,7 @@ function init() {
     var gSX = 100; //x-location of the gantry
 
     //Gantry back
-    var gBH = (gSTH - gSRH)/2;
+    var gBH = 250;
     var gBT = 18;
 
     //y rail
@@ -190,7 +190,7 @@ function init() {
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
     var ganFrontCsg = ganBackCsg.mirroredX();
     var yRailCsg = yRailObj.makeCsg().rotateZ(-90);
-        yRailCsg = yRailCsg.translate([0,0,gBH - yRailObj.width]);
+        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width]));
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -266,10 +266,10 @@ function init() {
         var ganFront = new THREE.Mesh(geom3,matPly);
         ganSides.add(ganFront);
         ganFront.position.set(gSL - gSTW,0,gSTH - gBH);
-    //y Rails
-//         geom3 = THREE.CSG.fromCSG(yRailCsg);
-//         var yRails = new THREE.Mesh(geom3,matAluminium);
-//         ganFront.add(yRails);
+    y Rails
+        geom3 = THREE.CSG.fromCSG(yRailCsg);
+        var yRails = new THREE.Mesh(geom3,matAluminium);
+        ganFront.add(yRails);
 
 }
 
