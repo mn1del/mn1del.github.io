@@ -148,11 +148,10 @@ function init() {
     var xBnutMtObj = new shopBallnutMount(xBSD);
     var xDriveArmObj = new shopXDriveArm(gSL,(ganSideInSpan() - basW)/2 + xRAW + xBScrwFltSuppObj.width/2 + xBnutMtObj.width/2,xDAT);
     var xDriveArmAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xDriveArmObj.length);
-    var yRailObj = new shopSbrxx(yRL,yRD);
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
     var ganBackObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     var ganFrontObj = ganBackObj;
-
+    var yRailObj = new shopSbrxx(yRL,yRD);
 
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
@@ -190,81 +189,86 @@ function init() {
                 0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gSL + gBT ,gBT,gSTH - gBH]).center("y");
     var ganFrontCsg = ganBackCsg.translate([-gST - ganFrontObj.thickness,0,0]);
+    var yRailCsg = yRailObj.makeCsg().rotateZ(-90);
+        yRailCsg = yRailCsg.translate([0,0,gBH - yRailObj.width]);
 
     //make THREE meshes, assemble and position
     var geom3;
     //base
-    geom3 = THREE.CSG.fromCSG(baseCsg);
-    var base = new THREE.Mesh(geom3,matConcrete);
-    scene.add(base);
+        geom3 = THREE.CSG.fromCSG(baseCsg);
+        var base = new THREE.Mesh(geom3,matConcrete);
+        scene.add(base);
     //xRailAng
-    geom3 = THREE.CSG.fromCSG(xRailAngCsg);
-    var xRailAng = new THREE.Mesh(geom3,matAluminium);
-    base.add(xRailAng);
-    //xRailAng.position.set(0,0,baseObj.thickness);
+        geom3 = THREE.CSG.fromCSG(xRailAngCsg);
+        var xRailAng = new THREE.Mesh(geom3,matAluminium);
+        base.add(xRailAng);
     //xRails
-    geom3 = THREE.CSG.fromCSG(xRailCsg);
-    var xRails = new THREE.Mesh(geom3,matAluminium);
-    xRailAng.add(xRails);
-    xRails.position.set(0,0,xRailObj.width/2 - xRailAngObj.height);
+        geom3 = THREE.CSG.fromCSG(xRailCsg);
+        var xRails = new THREE.Mesh(geom3,matAluminium);
+        xRailAng.add(xRails);
+        xRails.position.set(0,0,xRailObj.width/2 - xRailAngObj.height);
     //xLinBears
-    geom3 = THREE.CSG.fromCSG(xLinBearCsg);
-    var xLinBears = new THREE.Mesh(geom3,matAluminium);
-    xRails.add(xLinBears);
-    xLinBears.position.set(gSX,0,0);
+        geom3 = THREE.CSG.fromCSG(xLinBearCsg);
+        var xLinBears = new THREE.Mesh(geom3,matAluminium);
+        xRails.add(xLinBears);
+        xLinBears.position.set(gSX,0,0);
     //x ballscrew mount
-    geom3 = THREE.CSG.fromCSG(xBScrwMtCsg);
-    var xBScrwMt = new THREE.Mesh(geom3,matMelamine);
-    base.add(xBScrwMt);
-    xBScrwMt.position.set(0,0,-xBScrwMtObj.thickness);
+        geom3 = THREE.CSG.fromCSG(xBScrwMtCsg);
+        var xBScrwMt = new THREE.Mesh(geom3,matMelamine);
+        base.add(xBScrwMt);
+        xBScrwMt.position.set(0,0,-xBScrwMtObj.thickness);
     //x ballscrew fixed support
-    geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
-    var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-    xBScrwMt.add(xBScrwFixSupp);
-    xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,0);
+        geom3 = THREE.CSG.fromCSG(xBScrwFixSuppCsg);
+        var xBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+        xBScrwMt.add(xBScrwFixSupp);
+        xBScrwFixSupp.position.set(xBScrwFltSuppObj.thick + xBScrwFixSuppObj.thick + xBScrwObj.threadEnd - xBScrwObj.threadStart,0,0);
     //x ballscrew floating support
-    geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
-    var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
-    xBScrwMt.add(xBScrwFltSupp);
+        geom3 = THREE.CSG.fromCSG(xBScrwFltSuppCsg);
+        var xBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
+        xBScrwMt.add(xBScrwFltSupp);
     //x ballscrew
-    geom3 = THREE.CSG.fromCSG(xBScrwCsg);
-    var xBScrw = new THREE.Mesh(geom3,matAluminium);
-    xBScrwFltSupp.add(xBScrw);
-    xBScrw.position.set(xBScrwObj.length + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
+        geom3 = THREE.CSG.fromCSG(xBScrwCsg);
+        var xBScrw = new THREE.Mesh(geom3,matAluminium);
+        xBScrwFltSupp.add(xBScrw);
+        xBScrw.position.set(xBScrwObj.length + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,-xBScrwFixSuppObj.bscrewZPos);
     //x ballnut
-    geom3 = THREE.CSG.fromCSG(xBnutCsg);
-    var xBnut = new THREE.Mesh(geom3,matAluminium);
-    xBScrw.add(xBnut);
-    xBnut.position.set(gSX + gSL/2 - xBnutObj.flangeThick - xBnutMtObj.length/2 - xBScrwObj.length,0,0);
+        geom3 = THREE.CSG.fromCSG(xBnutCsg);
+        var xBnut = new THREE.Mesh(geom3,matAluminium);
+        xBScrw.add(xBnut);
+        xBnut.position.set(gSX + gSL/2 - xBnutObj.flangeThick - xBnutMtObj.length/2 - xBScrwObj.length,0,0);
     //x ballnut mount
-    geom3 = THREE.CSG.fromCSG(xBnutMtCsg);
-    var xBnutMt = new THREE.Mesh(geom3,matAluminium);
-    xBnut.add(xBnutMt);
-    xBnutMt.position.set(xBnutObj.flangeThick,0,0);
+        geom3 = THREE.CSG.fromCSG(xBnutMtCsg);
+        var xBnutMt = new THREE.Mesh(geom3,matAluminium);
+        xBnut.add(xBnutMt);
+        xBnutMt.position.set(xBnutObj.flangeThick,0,0);
     //x drive arm
-    geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
-    var xDriveArm = new THREE.Mesh(geom3,matPly);
-    xBnutMt.add(xDriveArm);
-    xDriveArm.position.set(xBnutMtObj.length/2, 0, -xBnutMtObj.height/2 - xDriveArmObj.thick);
+        geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
+        var xDriveArm = new THREE.Mesh(geom3,matPly);
+        xBnutMt.add(xDriveArm);
+        xDriveArm.position.set(xBnutMtObj.length/2, 0, -xBnutMtObj.height/2 - xDriveArmObj.thick);
     //x drive arm angle
-    geom3 = THREE.CSG.fromCSG(xDriveArmAngCsg);
-    var xDriveArmAng = new THREE.Mesh(geom3,matAluminium);
-    xDriveArm.add(xDriveArmAng);
-    xDriveArmAng.position.set(0, 0, -xRAW);
+        geom3 = THREE.CSG.fromCSG(xDriveArmAngCsg);
+        var xDriveArmAng = new THREE.Mesh(geom3,matAluminium);
+        xDriveArm.add(xDriveArmAng);
+        xDriveArmAng.position.set(0, 0, -xRAW);
     //gantry sides
-    geom3 = THREE.CSG.fromCSG(ganSideCsg);
-    var ganSides = new THREE.Mesh(geom3,matPly);
-    xLinBears.add(ganSides);
-    ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
+        geom3 = THREE.CSG.fromCSG(ganSideCsg);
+        var ganSides = new THREE.Mesh(geom3,matPly);
+        xLinBears.add(ganSides);
+        ganSides.position.set(0,0,-xLinBearObj.height/2 - xRailAngObj.height);
     //gantry back
-    geom3 = THREE.CSG.fromCSG(ganBackCsg);
-    var ganBack = new THREE.Mesh(geom3,matPly);
-    ganSides.add(ganBack);
+        geom3 = THREE.CSG.fromCSG(ganBackCsg);
+        var ganBack = new THREE.Mesh(geom3,matPly);
+        ganSides.add(ganBack);
     //gantry front
-    var ganFront = ganBack.clone();
-    ganSides.add(ganFront);
-    ganFront.translateX(-gSTW - gBT);
-
+        var ganFront = ganBack.clone();
+        ganFront.rotation.z = THREE.Math.degToRad(180);
+        ganSides.add(ganFront);
+        ganFront.translateX(-gSTW - gBT);
+    //y Rails
+//         geom3 = THREE.CSG.fromCSG(yRailCsg);
+//         var yRails = new THREE.Mesh(geom3,matAluminium);
+//         ganFront.add(yRails);
 
 }
 
