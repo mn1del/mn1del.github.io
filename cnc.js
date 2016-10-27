@@ -70,7 +70,10 @@ function init() {
     //y rail
     var yRL = 1004;
     var yRD = 16;
-
+    
+    //y lin bear span
+    var yLBS = 200;
+    
     //y ballscrew
     var yBSD = 16;
     var yBSL = 1000;
@@ -152,6 +155,7 @@ function init() {
     var ganBackObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     var ganFrontObj = ganBackObj;
     var yRailObj = new shopSbrxx(yRL,yRD);
+    var yLinBearObj = new shopSbrxxuu(yRD); 
 
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
@@ -190,7 +194,10 @@ function init() {
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
     var ganFrontCsg = ganBackCsg.mirroredX();
     var yRailCsg = yRailObj.makeCsg().rotateX(-90).rotateZ(90);
-        yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
+        yRailCsg = yRailCsg.union(yRailCsg.translate([-gBT,0,gBH - yRailObj.width + yRailObj.width])).center("y");
+    var yLinBearCsg = yLinBearObj.makeCsg();
+        yLinBearCsg = yLinBearCsg.rotateZ(90).union(yLinBearCsg.rotateZ(90).translate([yLBS - yLinBearObj.length,0,0]));
+        yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,0,gBH - yRailObj.width + yRailObj.width])).center("y");
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -270,7 +277,12 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
         ganFront.add(yRails);
-
+        yRails.position.set(-gBT,0,yRailCsg.width/2);
+    //y Rails
+        geom3 = THREE.CSG.fromCSG(yLinBearCsg);
+        var yLinBears = new THREE.Mesh(geom3,matAluminium);
+        yRails.add(yLinBears);
+        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),0,0);
 }
 
 //animation loop
