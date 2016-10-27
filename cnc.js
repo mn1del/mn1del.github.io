@@ -265,7 +265,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(ganFrontCsg);
         var ganFront = new THREE.Mesh(geom3,matPly);
         ganSides.add(ganFront);
-        ganFront.translateX(gSL - gSTW,0,gSTH - gBH);
+        ganFront.position.set(gSL - gSTW,0,gSTH - gBH);
     //y Rails
 //         geom3 = THREE.CSG.fromCSG(yRailCsg);
 //         var yRails = new THREE.Mesh(geom3,matAluminium);
