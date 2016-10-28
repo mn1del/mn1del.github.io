@@ -157,8 +157,8 @@ function init() {
     var xDriveArmObj = new shopXDriveArm(gSL,(ganSideInSpan() - basW)/2 + xRAW + xBScrwFltSuppObj.width/2 + xBnutMtObj.width/2,xDAT);
     var xDriveArmAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xDriveArmObj.length);
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
-    var ganBackObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
-    var ganFrontObj = ganBackObj;
+    var ganBackObj = new shopSheet(ganSideInSpan(),gBT,gBH);
+    var ganFrontObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var yLinBearObj = new shopSbrxxuu(yRD); 
 
@@ -195,8 +195,8 @@ function init() {
     var ganSideCsg = ganSideObj.makeCsg();
         ganSideCsg = ganSideCsg.union(
             ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
-    var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y");
-    var ganFrontCsg = ganBackCsg.mirroredX();
+    var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
+    var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
