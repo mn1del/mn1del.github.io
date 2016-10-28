@@ -160,7 +160,7 @@ function init() {
     var xBScrwFltSuppObj = new shopBfxx(xBSD);
     var xBnutObj = new shopBallnut(xBSD);
     var xBnutMtObj = new shopBallnutMount(xBSD);
-    var xDriveArmObj = new shopXDriveArm(gSL,(ganSideInSpan() - basW)/2 + xRAW + xBScrwFltSuppObj.width/2 + xBnutMtObj.width/2,xDAT);
+    //var xDriveArmObj = new shopXDriveArm(gSL,(ganSideInSpan() - basW)/2 + xRAW + xBScrwFltSuppObj.width/2 + xBnutMtObj.width/2,xDAT);
     var xDriveArmAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xDriveArmObj.length);
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
     var ganBackObj = new shopSheet(ganSideInSpan(),gBT,gBH);
