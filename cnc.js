@@ -207,7 +207,7 @@ function init() {
     var xDriveArmCsg = xDriveArmObj.makeCsg();
         xDriveArmCsg = xDriveArmCsg.union(xDriveArmCsg.translate([0,ganSideOutSpan() + gST + 2*gSAT,0])).center("y");
     var xDriveAngCsg = xDriveAngObj.makeCsg();
-        xDriveAngCsg = xDriveAngCsg.union(xDriveAngCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSAT,0])).center("y");
+        xDriveAngCsg = xDriveAngCsg.union(xDriveAngCsg.mirroredY().translate([0,ganSideOutSpan() + 2*xCAT,0])).center("y");
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
@@ -300,7 +300,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(xDriveAngCsg);
         var xDriveAng = new THREE.Mesh(geom3,matAluminium);
         xBnutMt.add(xDriveAng);
-        xDriveAng.position.set(xBnutMt.length/2 - xDAL/2, 0, -xCAT);
+        xDriveAng.position.set(xBnutMtObj.length/2 - xDAL/2, -xCAT, -xCAT);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
