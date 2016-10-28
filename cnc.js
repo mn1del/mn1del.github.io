@@ -289,7 +289,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
         var xDriveArm = new THREE.Mesh(geom3,matPly);
         ganSides.add(xDriveArm);
-        xDriveArm.position.set(gSTW - gSAH, 0, gSRH - xDriveArmObj.runnerHeight);
+        xDriveArm.position.set(gSTW - gSAH, 0, gSRH - xDriveArmObj.runnerHeight -20);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
