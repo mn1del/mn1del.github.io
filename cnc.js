@@ -27,7 +27,6 @@ function init() {
     var basH = 18;
 
     //x carriage angle
-    var xCAL = 300;
     var xCAW = 76.2;
     var xCAH = 101.6;
     var xCAT = 6.35;
@@ -148,7 +147,7 @@ function init() {
     var xRailAngObj = new shopAluAngle(xRAW,xRAH,xRAT,xRAL);
     var xRailObj = new shopSbrxx(xRL,xRD);
     var xLinBearObj = new shopSbrxxuu(xRD);
-    var xCarAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xCAL);
+    var xCarAngObj = new shopAluAngle(xCAW,xCAH,xCAT,gSL);
     var xBScrwMtObj = new shopSheet(bSMtL,bSMtW,bSMtH);
     var xBScrwObj = new shopRmxx05(xBSD, xBSL);
     var xBScrwFixSuppObj = new shopBkxx(xBSD);
