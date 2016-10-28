@@ -205,7 +205,7 @@ function init() {
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
     var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
     var ganSideReinfCsg = ganSideReinfObj.makeCsg().rotateY(-90).translate([gSRH,0,0]);
-        ganSideReinfCsg = ganSideReinfCsg.union(ganSideReinfCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSRT,0]));
+        ganSideReinfCsg = ganSideReinfCsg.union(ganSideReinfCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSRT,0])).center("y");
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
@@ -296,7 +296,7 @@ function init() {
         ganFront.position.set(gSL - gSTW,0,gSTH - gBH);
     //gantry side reinforcement angle
         geom3 = THREE.CSG.fromCSG(ganSideReinfCsg);
-        var ganSideReinf = new THREE.Mesh(geom3,matPly);
+        var ganSideReinf = new THREE.Mesh(geom3,matAluminium);
         ganSides.add(ganSideReinf);
         ganSideReinf.position.set(gSL + gSRT,-gSRT,xCarAngObj.inHeight);
     //y Rails
