@@ -300,7 +300,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(xDriveAngCsg);
         var xDriveAng = new THREE.Mesh(geom3,matAluminium);
         xBnutMt.add(xDriveAng);
-        xDriveAng.position.set(xBnutMtObj.length/2 - xDAL/2, -xCAT, -xCAT);
+        xDriveAng.position.set(xBnutMtObj.length/2 - xDAL/2, -xCAT, - xBnutMtObj.height/2 -xCAT);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
