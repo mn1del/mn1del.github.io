@@ -55,15 +55,15 @@ function init() {
 
     //Gantry side - top of runner will reference against
     var gSL = 400; //gantry side length
-    var gSRH = basH/2 + 2*xRAH; //ganSide runner height... goes approximately from top of base to half way up the base thickness
-    var gSTH = gSRH + 500; //ganSide top height... approximately 500mm above surface of the base
+    var gSRH = xCAH + 20; //ganSide runner height... goes approximately from top of base to half way up the base thickness
+    var gSTH = 500; //ganSide top height... approximately 500mm above surface of the base
     var gSTW = 120; //top width
     var gST = 18; //thickness
     var gSR = gSTW; //radius of curved inside corner (of the "L" shaped ganSide)
     var gSX = 100; //x-location of the gantry
 
     //Gantry back
-    var gBH = 250;
+    var gBH = gSTH/2;
     var gBT = 18;
 
     //y rail
