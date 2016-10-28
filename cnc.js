@@ -135,7 +135,7 @@ function init() {
 
     //create light(s)
     var dirLight = new THREE.DirectionalLight(colWhite , 0.95);
-    dirLight.position.set(-200, -300, 1000);
+    dirLight.position.set(500, -300, 1000);
     dirLight.position.normalize();
     scene.add(dirLight);
 
@@ -144,10 +144,6 @@ function init() {
     dirLight1.position.normalize();
     scene.add(dirLight1);
 
-    var dirLight2 = new THREE.DirectionalLight(colWhite , 0.95);
-    dirLight2.position.set(2500, 300, 1000);
-    dirLight2.position.normalize();
-    scene.add(dirLight2);
 /*     var pointLight = new THREE.PointLight(colWhite , 5, 50);
     pointLight.position.set(10, 20, -1000);
     scene.add(pointLight); */
