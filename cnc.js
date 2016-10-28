@@ -65,7 +65,13 @@ function init() {
     //Gantry back
     var gBH = gSTH/2;
     var gBT = 18;
-
+    
+    // gantry side reinforcement - angle aluminium
+    var gSRH = xRAH;
+    var gSRW = xRAW;
+    var gSRT = xRAT;
+    var gSRL = gSTH - xRAH;
+    
     //y rail
     var yRL = 1004;
     var yRD = 16;
@@ -159,6 +165,7 @@ function init() {
     var ganSideObj = new shopGantrySide(gSL, gSRH, gSTH, gSTW, gST, gSR);
     var ganBackObj = new shopSheet(ganSideInSpan(),gBT,gBH);
     var ganFrontObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
+    var ganSideReinfObj = new shopAluAngle(gSRW,gSRH,gSRT,gSRL);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var yLinBearObj = new shopSbrxxuu(yRD); 
 
@@ -197,6 +204,8 @@ function init() {
             ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
     var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
+    var ganSideReinfCsg = ganSideReinfObj.makeCsg().rotateY(-90).translate([gSRH,0,0]);
+        ganSideReinfCsg = ganSideReinfCsg.union(ganSideReinfCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSRT,0]));
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
@@ -285,6 +294,11 @@ function init() {
         var ganFront = new THREE.Mesh(geom3,matPly);
         ganSides.add(ganFront);
         ganFront.position.set(gSL - gSTW,0,gSTH - gBH);
+    //gantry side reinforcement angle
+        geom3 = THREE.CSG.fromCSG(ganSideReinfCsg);
+        var ganSideReinf = new THREE.Mesh(geom3,matPly);
+        ganSides.add(ganSideReinf);
+        ganSideReinf.position.set(gSL + gSRT,-gSRT,xCarAngObj.inHeight);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
