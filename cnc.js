@@ -198,6 +198,8 @@ function init() {
         ganSideCsg = ganSideCsg.union(ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
     var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
+    var ganSideAngCsg = ganSideAngObj.makeCsg().rotateY(-90);
+        ganSideAngCsg = ganSideAngCsg.union(ganSideAngCsg.mirroredY().translate([0,ganSideOutSpan()+ 2*gSAT,0]));
     var xDriveArmCsg = xDriveArmObj.makeCsg();
         xDriveArmCsg = xDriveArmCsg.union(xDriveArmCsg.translate([0,ganSideOutSpan() + gST + 2*gSAT,0])).center("y");
     var yRailCsg = yRailObj.makeCsg();
