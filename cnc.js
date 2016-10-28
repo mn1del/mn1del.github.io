@@ -70,7 +70,7 @@ function init() {
     var gSRH = xRAH;
     var gSRW = xRAW;
     var gSRT = xRAT;
-    var gSRL = gSTH - xCAH;
+    var gSRL = gSTH - xCAH + xCAT;
     
     //y rail
     var yRL = 1004;
@@ -298,7 +298,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(ganSideReinfCsg);
         var ganSideReinf = new THREE.Mesh(geom3,matAluminium);
         ganSides.add(ganSideReinf);
-        ganSideReinf.position.set(gSL + gSRT,-gSRT,xCarAngObj.inHeight);
+        ganSideReinf.position.set(gSL + gSRT,0,xCarAngObj.inHeight);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
