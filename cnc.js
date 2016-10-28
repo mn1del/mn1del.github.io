@@ -70,7 +70,7 @@ function init() {
     var gSRH = xRAH;
     var gSRW = xRAW;
     var gSRT = xRAT;
-    var gSRL = gSTH - xRAH;
+    var gSRL = gSTH - xCAH;
     
     //y rail
     var yRL = 1004;
@@ -204,7 +204,7 @@ function init() {
             ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
     var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
-    var ganSideReinfCsg = ganSideReinfObj.makeCsg().rotateY(-90).translate([gSRH,0,0]);
+    var ganSideReinfCsg = ganSideReinfObj.makeCsg().rotateY(-90);
         ganSideReinfCsg = ganSideReinfCsg.union(ganSideReinfCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSRT,0])).center("y");
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
