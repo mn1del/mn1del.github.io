@@ -175,7 +175,7 @@ function init() {
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([gSL - xLinBearObj.length,0,0]));
         xLinBearCsg = xLinBearCsg.union(xLinBearCsg.translate([0,baseObj.width + xRailObj.width - 2*(xRailAngObj.inWidth - xRAT),0])).center("y");
     var xCarAngCsg = xCarAngObj.makeCsg();
-        xCarAngCsg = xCarAngCsg.union(xCarAngCsg.translate([0,ganSideOutSpan() - xCAW + 2*xCAT])).center("y");
+        xCarAngCsg = xCarAngCsg.union(xCarAngCsg.mirroredY().translate([0,ganSideOutSpan() + 2*xCAT])).center("y");
     var xBScrwMtCsg = xBScrwMtObj.makeCsg();
         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([xBScrwObj.threadLength,0,0]));
         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([0,baseObj.width - xBScrwMtObj.width,0])).center("y");
