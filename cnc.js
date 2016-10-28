@@ -166,6 +166,7 @@ function init() {
     var ganBackObj = new shopSheet(ganSideInSpan(),gBT,gBH);
     var ganFrontObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     var ganSideAngObj = new shopAluAngle(gSAW,gSAH,gSAT,gSAL);
+    var xDriveArmObj = new shopGantrySide(gSL - (gSTW - gSAH), gSRH + xRAH + basH + xBScrwFixSuppObj.height + 20, gSTH, gSAH, xDAT, gSR);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var yLinBearObj = new shopSbrxxuu(yRD); 
 
@@ -195,17 +196,14 @@ function init() {
         xBnutCsg = xBnutCsg.union(xBnutCsg.translate([0,baseObj.width - xBScrwFixSuppObj.width,0])).center("y");
     var xBnutMtCsg = xBnutMtObj.makeCsg();
         xBnutMtCsg = xBnutMtCsg.union(xBnutMtCsg.translate([0,baseObj.width - xBScrwFixSuppObj.width,0])).center("y");
-    var xDriveArmCsg = xDriveArmObj.makeCsg();
-        xDriveArmCsg = xDriveArmCsg.union(xDriveArmCsg.mirroredY().translate([0,ganSideInSpan() ,0])).center("y","x");
-    var xDriveArmAngCsg = xDriveArmAngObj.makeCsg().rotateX(-90).translate([0,0,xRAW]);
-        xDriveArmAngCsg = xDriveArmAngCsg.union(xDriveArmAngCsg.mirroredY().translate([0,ganSideInSpan() ,0])).center("y","x");
     var ganSideCsg = ganSideObj.makeCsg();
-        ganSideCsg = ganSideCsg.union(
-            ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
+        ganSideCsg = ganSideCsg.union(ganSideCsg.translate([0, ganSideInSpan() + gST,0])).center("y");
     var ganBackCsg = ganBackObj.makeCsg().rotateZ(90).translate([0 ,0,0]).center("y");
     var ganFrontCsg = ganFrontObj.makeCsg().rotateZ(90).translate([gBT ,0,0]).center("y").mirroredX();
     var ganSideAngCsg = ganSideAngObj.makeCsg().rotateY(-90);
         ganSideAngCsg = ganSideAngCsg.union(ganSideAngCsg.mirroredY().translate([0,ganSideOutSpan() + 2*gSAT,0])).center("y");
+    var xDriveArmCsg = xDriveArmObj.makeCsg();
+        xDriveArmCsg = xDriveArmCsg.union(xDriveArmCsg.translate([0,ganSideOutSpan() + gST + 2*gSAT,0])).center("y");
     var yRailCsg = yRailObj.makeCsg();
         yRailCsg = yRailCsg.rotateX(-90).rotateZ(90);
         yRailCsg = yRailCsg.union(yRailCsg.translate([0,0,gBH - yRailObj.width])).center("y");
@@ -269,16 +267,6 @@ function init() {
         var xBnutMt = new THREE.Mesh(geom3,matAluminium);
         xBnut.add(xBnutMt);
         xBnutMt.position.set(xBnutObj.flangeThick,0,0);
-    //x drive arm
-        geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
-        var xDriveArm = new THREE.Mesh(geom3,matPly);
-        xBnutMt.add(xDriveArm);
-        xDriveArm.position.set(xBnutMtObj.length/2, 0, -xBnutMtObj.height/2 - xDriveArmObj.thick);
-    //x drive arm angle
-//         geom3 = THREE.CSG.fromCSG(xDriveArmAngCsg);
-//         var xDriveArmAng = new THREE.Mesh(geom3,matAluminium);
-//         xDriveArm.add(xDriveArmAng);
-//         xDriveArmAng.position.set(0, 0, -xRAW);
     //gantry sides
         geom3 = THREE.CSG.fromCSG(ganSideCsg);
         var ganSides = new THREE.Mesh(geom3,matPly);
@@ -299,6 +287,11 @@ function init() {
         var ganSideAng = new THREE.Mesh(geom3,matAluminium);
         ganSides.add(ganSideAng);
         ganSideAng.position.set(gSL + gSAT,0,xCarAngObj.inHeight);
+    //x drive arm
+        geom3 = THREE.CSG.fromCSG(xDriveArmCsg);
+        var xDriveArm = new THREE.Mesh(geom3,matPly);
+        ganSides.add(xDriveArm);
+        xDriveArm.position.set(gSTW - gSAH, 0, gSRH - xDriveArmObj.runnerHeight);
     //y Rails
         geom3 = THREE.CSG.fromCSG(yRailCsg);
         var yRails = new THREE.Mesh(geom3,matAluminium);
