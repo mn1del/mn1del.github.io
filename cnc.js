@@ -416,11 +416,11 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
         yLinBears.add(yCarAng);
+        yCarAng.position.set(0,0,yLinBearObj.height);
     // spindle mount
         geom3 = THREE.CSG.fromCSG(spMtCsg);
         var spMt = new THREE.Mesh(geom3,matAluminium);
         yCarAng.add(spMt);
-        spMt.position.set(0,0,yLinBearObj.height);
 }
 
 //animation loop
