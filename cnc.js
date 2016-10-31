@@ -294,7 +294,7 @@ function init() {
     var yLinBearCsg = yLinBearObj.makeCsg();
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([yLBS - yLinBearObj.length,0,0]));
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
-        yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX();
+        yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
         yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + 2*railTotHeight(yRailObj, yLinBearObj) + 2*zCAT + spMtObj.width])).center("y");
@@ -420,6 +420,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(spMtCsg);
         var spMt = new THREE.Mesh(geom3,matAluminium);
         yCarAng.add(spMt);
+        spMt.position.set(0,0,yLinBearObj.height);
 }
 
 //animation loop
