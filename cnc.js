@@ -251,8 +251,8 @@ function init() {
     var yLinBearObj = new shopSbrxxuu(yRD);
     var spMtObj = new shopSpindleMount(spinD);
     var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL); 
-    var zRailObj = new shopSbrxx(xRL,xRD);
-    var zLinBearObj = new shopSbrxxuu(xRD);
+    var zRailObj = new shopSbrxx(zRL,zRD);
+    var zLinBearObj = new shopSbrxxuu(zRD);
     var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL); 
     
     //make CSGs, and where applicable copies, to be merged into a single geometry
@@ -314,7 +314,7 @@ function init() {
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,0,zLBS - zLinBearObj.length]));
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj) - 2*(zRailObj.railZPos - zLinBearObj.railZPos),0])).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
-        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj)])).center("y");
+        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
 
     
     //make THREE meshes, assemble and position
@@ -434,7 +434,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
         yLinBears.add(yCarAng);
-        yCarAng.position.set(-yLinBearObj.height,0,0);
+        yCarAng.position.set(-yLinBearObj.height,0,-yLinBearObj.width/2);
     //z rails
         geom3 = THREE.CSG.fromCSG(zRailCsg);
         var zRails = new THREE.Mesh(geom3,matAluminium);
