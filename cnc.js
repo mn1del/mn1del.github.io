@@ -416,7 +416,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
         yLinBears.add(yCarAng);
-        yCarAng.position.set(0,0,yLinBearObj.height);
+        yCarAng.position.set(-yLinBearObj.height,0,0);
     // spindle mount
         geom3 = THREE.CSG.fromCSG(spMtCsg);
         var spMt = new THREE.Mesh(geom3,matAluminium);
