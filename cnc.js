@@ -25,7 +25,7 @@ function init() {
     //dimensions
     //generic clearance - where a clearance gap between moving parts is required, defualt to this value
     var gClear = 5;
-    
+
     //main base
     var basL = 1900;
     var basW = 1000;
@@ -97,30 +97,26 @@ function init() {
     //y ballscrew
     var yBSD = 16;
     var yBSL = 1000;
-    
+
     //y carriage angle: 2 pieces of the x carriage angle
     var yCAW = xCAH; //y gantry angle width
     var yCAH = xCAW;
     var yCAT = xCAT;
     var yCAL = 600;
-    
-    //y ballscrew
-    var yBSD = 16;
-    var yBSL = 1000;
 
     //z rail
     var zRL = 600;
     var zRD = 20;
-    
+
     //z lin bearings
     var zLBS = 300; //outer span
-    
+
     //z carriage angle
     var zCAW = xRAH;
     var zCAH = xRAW;
     var zCAT = xRAT;
     var zCAL = yCAL/2;
-    
+
     //x motor
     var xMotW = 56;
     var xMotL = 56;
@@ -153,7 +149,7 @@ function init() {
     //z coupler
     var zCD = 25;
     var zCL = 30;
-    
+
     //spindle
     var spinD = 80; //diameter
 
@@ -172,7 +168,7 @@ function init() {
         }
     //inner width of y carriage angle
         function yCAInWidth(railObject, linBearObject, spMtObj) {
-            return 2*railTotHeight(railObject, linBearObject) + 2*zCAT + spMtObj.width;   
+            return 2*railTotHeight(railObject, linBearObject) + 2*zCAT + spMtObj.width;
         }
 
     //html container div - to house the WebGL content
@@ -257,11 +253,11 @@ function init() {
     var yBScrwFixSuppObj = new shopBkxx(yBSD);
     var yBScrwFltSuppObj = new shopBfxx(yBSD);
     var spMtObj = new shopSpindleMount(spinD);
-    var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL); 
+    var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL);
     var zRailObj = new shopSbrxx(zRL,zRD);
     var zLinBearObj = new shopSbrxxuu(zRD);
-    var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL); 
-    
+    var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL);
+
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -316,7 +312,7 @@ function init() {
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var yBScrwFixSuppCsg = yBScrwFixSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
     var yBScrwFltSuppCsg = yBScrwFltSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
-    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90);
+    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).translate([0,yBSL,0]).mirroredY();
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
         zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
@@ -326,7 +322,7 @@ function init() {
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
         yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
 
-    
+
     //make THREE meshes, assemble and position
     var geom3;
     //base
@@ -444,17 +440,17 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yBScrwFixSuppCsg);
         var yBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
         ganFront.add(yBScrwFixSupp);
-        yBScrwFixSupp.position.set(0,yBScrwFltSuppObj.thick + yBScrwFixSuppObj.thick + yBScrwObj.threadEnd - yBScrwObj.threadStart,gBH/2);
+        yBScrwFixSupp.position.set(-gBT,ganFrontObj.length/2 - yBScrwFltSuppObj.thick - yBScrwObj.threadLength,gBH/2);
     //y ballscrew floating support
         geom3 = THREE.CSG.fromCSG(yBScrwFltSuppCsg);
         var yBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
         ganFront.add(yBScrwFltSupp);
-        yBScrwFltSupp.position.set(0,0,gBH/2);
+        yBScrwFltSupp.position.set(-gBT,ganFrontObj.length/2,gBH/2);
     //y ballscrew
         geom3 = THREE.CSG.fromCSG(yBScrwCsg);
         var yBScrw = new THREE.Mesh(geom3,matAluminium);
-        ganFront.add(yBScrw);
-        yBScrw.position.set(-yBScrwFixSuppObj.bscrewZPos,yBScrwObj.length + yBScrwFltSuppObj.thick - yBScrwObj.threadFltNub,gBH/2);
+        yBScrwFltSupp.add(yBScrw);
+        yBScrw.position.set(- yBScrwFixSuppObj.bscrewZPos,-yBScrwFltSuppObj.thick + yBScrwObj.threadFltNub,0);
     //y carriage angle
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
