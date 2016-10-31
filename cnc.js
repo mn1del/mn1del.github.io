@@ -297,7 +297,7 @@ function init() {
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX();
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
-        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + 2*railTotHeight() + 2*zCAT + spMtObj.width])).center("y");
+        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + 2*railTotHeight(yRailObj, yLinBearObj) + 2*zCAT + spMtObj.width])).center("y");
 
     //make THREE meshes, assemble and position
     var geom3;
