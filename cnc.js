@@ -242,13 +242,13 @@ function init() {
         xBScrwMtCsg = xBScrwMtCsg.mirroredZ().mirroredY().translate([0,bSMtW,0]);
         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([xBSL - bSMtL + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,0]));
 //         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([suppBasL - bSMtL,0,0]));
-        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.mirroredY().translate([0,suppBasW + 2*bSMtW,0])).center("y");
+        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.mirroredY().translate([0,suppBasW + 2*bSMtW + 2*xCAT,0])).center("y");
     var xCouplerCsg = xCouplerObj.makeCsg();
         xCouplerCsg = xCouplerCsg.mirroredX().union(xCouplerCsg.mirroredX().translate([0,suppBasW + xBScrwFixSuppObj.width + 2*bSMtT + 2*xCAT,0])).center("y");
     var xMotorCsg = xMotorObj.makeCsg().mirroredX().translate([xMotL + xMotSL,0,0]);
         xMotorCsg = xMotorCsg.union(xMotorCsg.translate([0,suppBasW + xBScrwFixSuppObj.width + 2*bSMtT + 2*xCAT,0])).center("y");
-    var xMotorMtCsg = xMotorMtObj.makeCsg().mirroredY().rotateY(90);
-        xMotorMtCsg = xMotorMtCsg.union(xMotorMtCsg.translate([0,suppBasW + xCAW + 2*xCAT,0])).center("y");
+    var xMotorMtCsg = xMotorMtObj.makeCsg().mirroredY().rotateY(-90);
+        xMotorMtCsg = xMotorMtCsg.union(xMotorMtCsg.translate([0,suppBasW + xCAW,0])).center("y");
     var xBnutCsg = xBnutObj.makeCsg();
         xBnutCsg = xBnutCsg.union(xBnutCsg.translate([0,suppBasW + xBScrwFixSuppObj.width + 2*bSMtT + 2*xCAT,0])).center("y");
     var xBnutMtCsg = xBnutMtObj.makeCsg();
@@ -333,7 +333,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(xMotorMtCsg);
         var xMotorMt = new THREE.Mesh(geom3,matAluminium);
         xMotor.add(xMotorMt);
-        xMotorMt.position.set(xMotSL - xCAT,0,xCAH - xMotW/2);
+        xMotorMt.position.set(xMotSL ,0,-xCAH + xMotW/2);
     //x ballnut
         geom3 = THREE.CSG.fromCSG(xBnutCsg);
         var xBnut = new THREE.Mesh(geom3,matAluminium);
