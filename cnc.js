@@ -100,16 +100,23 @@ function init() {
     var yCAT = xCAT;
     var yCAL = 600;
     
+    //y ballscrew
+    var yBSD = 16;
+    var yBSL = 1000;
+
+    //z rail
+    var zRL = 600;
+    var zRD = 20;
+    
+    //z lin bearings
+    var zLBS = 300; //outer span
+    
     //z carriage angle
     var zCAW = xRAH;
     var zCAH = xRAW;
     var zCAT = xRAT;
     var zCAL = yCAL/2;
     
-    //y ballscrew
-    var yBSD = 16;
-    var yBSL = 1000;
-
     //x motor
     var xMotW = 56;
     var xMotL = 56;
@@ -146,7 +153,6 @@ function init() {
     //spindle
     var spinD = 80; //diameter
 
-
     //project helper functions
     //returns span between inside edges of gantry sides
         function ganSideInSpan() {
@@ -159,6 +165,10 @@ function init() {
     //height from bottom of rail to top of linear bearing
         function railTotHeight(railObject, linBearObject) {
             return railObject.railZPos + (linBearObject.height - linBearObject.railZPos);
+        }
+    //inner width of y carriage angle
+        function yCAInWidth(railObject, linBearObject, spMtObj) {
+            return 2*railTotHeight(railObject, linBearObject) + 2*zCAT + spMtObj.width;   
         }
 
     //html container div - to house the WebGL content
@@ -239,10 +249,12 @@ function init() {
     var xDriveAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xDAL);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var yLinBearObj = new shopSbrxxuu(yRD);
-    var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL); 
-    var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL); 
     var spMtObj = new shopSpindleMount(spinD);
-
+    var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL); 
+    var zRailObj = new shopSbrxx(xRL,xRD);
+    var zLinBearObj = new shopSbrxxuu(xRD);
+    var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL); 
+    
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -296,9 +308,15 @@ function init() {
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
+    var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
+        zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0]));
+    var zLinBearCsg = zLinBearObj.makeCsg().rotateY(-90);
+        zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,0,zLBS - zLinBearObj.length]));
+        zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0]));
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
-        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + 2*railTotHeight(yRailObj, yLinBearObj) + 2*zCAT + spMtObj.width])).center("y");
+        yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj)])).center("y");
 
+    
     //make THREE meshes, assemble and position
     var geom3;
     //base
@@ -412,15 +430,25 @@ function init() {
         var yLinBears = new THREE.Mesh(geom3,matAluminium);
         yRails.add(yLinBears);
         yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY - yRL/2,0);
-    //z carriage angle
+    //y carriage angle
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
         yLinBears.add(yCarAng);
         yCarAng.position.set(-yLinBearObj.height,0,0);
+    //z rails
+        geom3 = THREE.CSG.fromCSG(zRailCsg);
+        var zRails = new THREE.Mesh(geom3,matAluminium);
+        yCarAng.add(zRails);
+        zRails.position.set(-yCAT*2,0,0); //positioning assumed to be one carriage angle thickness inside the yCA
+    //z lin Bearings
+        geom3 = THREE.CSG.fromCSG(zLinBearCsg);
+        var zLinBears = new THREE.Mesh(geom3,matAluminium);
+        zRails.add(zLinBears);
+        zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
     // spindle mount
-        geom3 = THREE.CSG.fromCSG(spMtCsg);
-        var spMt = new THREE.Mesh(geom3,matAluminium);
-        yCarAng.add(spMt);
+//         geom3 = THREE.CSG.fromCSG(spMtCsg);
+//         var spMt = new THREE.Mesh(geom3,matAluminium);
+//         yCarAng.add(spMt);
 }
 
 //animation loop
