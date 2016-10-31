@@ -332,7 +332,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(xMotorMtCsg);
         var xMotorMt = new THREE.Mesh(geom3,matAluminium);
         xMotor.add(xMotorMt);
-        xMotorMt.position.set(xMotSL,0,xMotW/2);
+        xMotorMt.position.set(xMotSL,0,-xMotW/2);
     //x ballnut
         geom3 = THREE.CSG.fromCSG(xBnutCsg);
         var xBnut = new THREE.Mesh(geom3,matAluminium);
