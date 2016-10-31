@@ -308,11 +308,11 @@ function init() {
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
-    var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
-        zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([-zRailObj.width/2,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
+    var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90).translate([-zRailObj.width/2,0,0]);
+        zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
     var zLinBearCsg = zLinBearObj.makeCsg().rotateY(-90).rotateZ(-90);
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,0,zLBS - zLinBearObj.length]));
-        zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj) - 2*(zRailObj.railZPos - zLinBearObj.railZPos),0])).center("y");
+        zLinBearCsg = zLinBearCsg.union(zLinBearCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj) - 2*(zRailObj.railZPos - zLinBearObj.railZPos),0])).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
         yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj)])).center("y");
 
