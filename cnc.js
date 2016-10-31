@@ -444,7 +444,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zLinBearCsg);
         var zLinBears = new THREE.Mesh(geom3,matAluminium);
         zRails.add(zLinBears);
-        zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
+//         zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
     // spindle mount
 //         geom3 = THREE.CSG.fromCSG(spMtCsg);
 //         var spMt = new THREE.Mesh(geom3,matAluminium);
