@@ -240,8 +240,8 @@ function init() {
         xBScrwCsg = xBScrwCsg.union(xBScrwCsg.translate([0,suppBaseObj.width + xBScrwFixSuppObj.width + 2*bSMtT,0])).center("y").mirroredX();
     var xBScrwMtCsg = xBScrwMtObj.makeCsg();
         xBScrwMtCsg = xBScrwMtCsg.mirroredZ().mirroredY().translate([0,bSMtW,0]);
-//         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([xBSL - bSMtL + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,0]));
-        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([suppBasL - bSMtL,0,0]));
+        xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([xBSL - bSMtL + xBScrwFltSuppObj.thick - xBScrwObj.threadFltNub,0,0]));
+//         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.translate([suppBasL - bSMtL,0,0]));
         xBScrwMtCsg = xBScrwMtCsg.union(xBScrwMtCsg.mirroredY().translate([0,suppBasW + 2*bSMtW,0])).center("y");
     var xCouplerCsg = xCouplerObj.makeCsg();
         xCouplerCsg = xCouplerCsg.mirroredX().union(xCouplerCsg.mirroredX().translate([0,suppBaseObj.width + xBScrwFixSuppObj.width + 2*bSMtT,0])).center("y");
