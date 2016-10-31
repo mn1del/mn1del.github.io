@@ -214,7 +214,7 @@ function init() {
     var ganFrontObj = new shopSheet(ganSideInSpan() + 2*gST,gBT,gBH);
     var ganSideAngObj = new shopAluAngle(gSAW,gSAH,gSAT,gSAL);
     var xDriveArmObj = new shopGantrySide(gSL - (gSTW - gSAH), gSRH + xRAH + basH + xBScrwFixSuppObj.height + 20, gSTH, gSAH, xDAT, gSR);
-    var xDriveAngObj = new shopAluAngle(xCAH,xCAW,xCAT,xDAL);
+    var xDriveAngObj = new shopAluAngle(xCAW,xCAH,xCAT,xDAL);
     var yRailObj = new shopSbrxx(yRL,yRD);
     var yLinBearObj = new shopSbrxxuu(yRD);
 
