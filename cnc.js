@@ -68,7 +68,7 @@ function init() {
     var gSTW = 120; //top width
     var gST = 18; //thickness
     var gSR = gSTW; //radius of curved inside corner (of the "L" shaped ganSide)
-    var gSX = 100; //x-location of the gantry
+    var gSX = 0; //x-location of the gantry
 
     //Gantry back
     var gBH = gSTH/2;
