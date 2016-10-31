@@ -308,7 +308,7 @@ function init() {
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
-    var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90).translate([-zRailObj.width/2,0,0]);
+    var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
         zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
     var zLinBearCsg = zLinBearObj.makeCsg().rotateY(-90).rotateZ(-90);
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.translate([0,0,zLBS - zLinBearObj.length]));
@@ -439,7 +439,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zRailCsg);
         var zRails = new THREE.Mesh(geom3,matAluminium);
         yCarAng.add(zRails);
-        zRails.position.set(-yCAT*2,0,0); //positioning assumed to be one carriage angle thickness inside the yCA
+        zRails.position.set(-zRailObj.width/2 - yCAT*2,0,0); //positioning assumed to be one carriage angle thickness inside the yCA
     //z lin Bearings
         geom3 = THREE.CSG.fromCSG(zLinBearCsg);
         var zLinBears = new THREE.Mesh(geom3,matAluminium);
