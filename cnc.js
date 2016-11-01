@@ -23,7 +23,7 @@ function init() {
     var matBlack = new THREE.MeshPhongMaterial( { color: colBlack , specular: 0x111111, shininess: 0 } );
 
     //dimensions
-    //generic clearance - where a clearance gap between moving parts is required, defualt to this value
+    //generic clearance - where a clearance gap between moving parts is required, default to this value
     var gClear = 5;
 
     //main base
@@ -312,7 +312,8 @@ function init() {
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var yBScrwFixSuppCsg = yBScrwFixSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
     var yBScrwFltSuppCsg = yBScrwFltSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
-    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).translate([0,yBSL,0]).mirroredY();
+    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).mirroredY().translate([0,-yBSL + yBScrwObj.threadLength/2 + yBScrwObj.threadFltNub;
+    //var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).translate([0,yBSL,0]).mirroredY();
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
         zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
