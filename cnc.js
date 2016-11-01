@@ -66,7 +66,7 @@ function init() {
 
     //Gantry side - top of runner will reference against
     var gSL = 400; //gantry side length
-    var gSRH = xCAH + 20; //ganSide runner height
+    var gSRH = xCAH; //ganSide runner height
     var gSTH = 500; //ganSide top height... approximately 500mm above surface of the base
     var gSTW = 120; //top width
     var gST = 18; //thickness
@@ -74,7 +74,7 @@ function init() {
     var gSX = 0; //x-location of the gantry
 
     //Gantry back
-    var gBH = gSTH/2;
+    var gBH = gSTH - (gSRH + gSR);
     var gBT = 18;
 
     // gantry side angle - angle aluminium
@@ -257,6 +257,8 @@ function init() {
     var zRailObj = new shopSbrxx(zRL,zRD);
     var zLinBearObj = new shopSbrxxuu(zRD);
     var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL);
+    var yBnutObj = new shopBallnut(yBSD);
+    var yBnutMtObj = new shopBallnutMount(yBSD);
 
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
@@ -311,9 +313,8 @@ function init() {
         yLinBearCsg = yLinBearCsg.union(yLinBearCsg.translate([0,gBH - yRailObj.width,0]));
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var yBScrwFixSuppCsg = yBScrwFixSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
-    var yBScrwFltSuppCsg = yBScrwFltSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
-    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).mirroredY().translate([0,-yBSL + yBScrwObj.threadLength/2 + yBScrwObj.threadFltNub;
-    //var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).translate([0,yBSL,0]).mirroredY();
+    var yBScrwFltSuppCsg = yBScrwFltSuppObj.makeCsg().rotateZ(90).rotateY(-90);
+    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).mirroredY().translate([0, -yBSL +yBScrwObj.threadLength/2, 0]);
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
         zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
@@ -322,7 +323,10 @@ function init() {
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj) - 2*(zRailObj.railZPos - zLinBearObj.railZPos),0])).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
         yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
-
+    var yBnutCsg = yBnutObj.makeCsg().rotateZ(90).rotateY(90);
+    var yBnutMtCsg = yBnutMtObj.makeCsg().rotateZ(90).rotateY(90);
+    var zCarAngCsg = zCarAngObj.makeCsg().rotateY(-90);
+	zCarAngCsg = zCarAngCsg.union(zCarAngCsg.mirroredY().translate([0,yCAInWidth(zRailObj,zLinBearObj,spMtObj) - 2*railTotHeight(zRailObj,zLinBearObj),0])).center("y");
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -436,22 +440,22 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yLinBearCsg);
         var yLinBears = new THREE.Mesh(geom3,matAluminium);
         yRails.add(yLinBears);
-        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY - yRL/2,0);
-    //y ballscrew fixed support
-        geom3 = THREE.CSG.fromCSG(yBScrwFixSuppCsg);
-        var yBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
-        ganFront.add(yBScrwFixSupp);
-        yBScrwFixSupp.position.set(-gBT,ganFrontObj.length/2 - yBScrwFltSuppObj.thick - yBScrwObj.threadLength,gBH/2);
-    //y ballscrew floating support
-        geom3 = THREE.CSG.fromCSG(yBScrwFltSuppCsg);
-        var yBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
-        ganFront.add(yBScrwFltSupp);
-        yBScrwFltSupp.position.set(-gBT,ganFrontObj.length/2,gBH/2);
+        yLinBears.position.set(-(yRailObj.railZPos - yLinBearObj.railZPos),yLBY - yBScrwObj.threadLength/2,0);
     //y ballscrew
         geom3 = THREE.CSG.fromCSG(yBScrwCsg);
         var yBScrw = new THREE.Mesh(geom3,matAluminium);
-        yBScrwFltSupp.add(yBScrw);
-        yBScrw.position.set(- yBScrwFixSuppObj.bscrewZPos,-yBScrwFltSuppObj.thick + yBScrwObj.threadFltNub,0);
+        ganFront.add(yBScrw);
+        yBScrw.position.set(-gBT - yBScrwFixSuppObj.bscrewZPos,0,gBH/2);
+    //y ballscrew floating support
+        geom3 = THREE.CSG.fromCSG(yBScrwFltSuppCsg);
+        var yBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
+        yBScrw.add(yBScrwFltSupp);
+        yBScrwFltSupp.position.set(yBScrwFltSuppObj.bscrewZPos, yBScrwObj.threadLength/2,0);
+    //y ballscrew fixed support
+        geom3 = THREE.CSG.fromCSG(yBScrwFixSuppCsg);
+        var yBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+        yBScrwFltSupp.add(yBScrwFixSupp);
+        yBScrwFixSupp.position.set(0, - yBScrwObj.threadLength,0);
     //y carriage angle
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
@@ -466,6 +470,21 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zLinBearCsg);
         var zLinBears = new THREE.Mesh(geom3,matAluminium);
         zRails.add(zLinBears);
+    //y ballnut
+        geom3 = THREE.CSG.fromCSG(yBnutCsg);
+        var yBnut = new THREE.Mesh(geom3,matAluminium);
+        yBScrw.add(yBnut);
+        yBnut.position.set(0, yLBY - yBScrwObj.threadLength/2 - yBnutObj.flangeThick + (yCAInWidth(zRailObj, zLinBearObj, spMtObj)/2 - yCAW - yCAT) + yBnutMtObj.length/2, 0);
+    //y ballnut mount
+        geom3 = THREE.CSG.fromCSG(yBnutMtCsg);
+        var yBnutMt = new THREE.Mesh(geom3,matAluminium);
+        yBnut.add(yBnutMt);
+        yBnutMt.position.set(0,yBnutObj.flangeThick,0);
+    //z carriage angle	
+        geom3 = THREE.CSG.fromCSG(zCarAngCsg);
+        var zCarAng = new THREE.Mesh(geom3,matAluminium);
+        zLinBears.add(zCarAng);
+        zCarAng.position.set(0,zLinBearObj.width/2 + zCAT*2,0);
 //         zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
     // spindle mount
 //         geom3 = THREE.CSG.fromCSG(spMtCsg);
