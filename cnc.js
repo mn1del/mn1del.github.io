@@ -465,7 +465,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zRailCsg);
         var zRails = new THREE.Mesh(geom3,matAluminium);
         yCarAng.add(zRails);
-        zRails.position.set(-zRailObj.width/2 - yCAT*2,0,0); //positioning assumed to be one carriage angle thickness inside the yCA
+        zRails.position.set(zRailObj.width/2 - yCAH,0,0); //positioning assumed to be one carriage angle thickness inside the yCA
     //z lin Bearings
         geom3 = THREE.CSG.fromCSG(zLinBearCsg);
         var zLinBears = new THREE.Mesh(geom3,matAluminium);
@@ -484,12 +484,13 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zCarAngCsg);
         var zCarAng = new THREE.Mesh(geom3,matAluminium);
         zLinBears.add(zCarAng);
-        zCarAng.position.set(0,zLinBearObj.width/2 + zCAT*2,0);
+        zCarAng.position.set(zCAH - zLinBearObj.width/2 ,0,0);
 //         zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
     // spindle mount
-//         geom3 = THREE.CSG.fromCSG(spMtCsg);
-//         var spMt = new THREE.Mesh(geom3,matAluminium);
-//         yCarAng.add(spMt);
+        geom3 = THREE.CSG.fromCSG(spMtCsg);
+        var spMt = new THREE.Mesh(geom3,matAluminium);
+        zCarAng.add(spMt);
+        spMt.position.set(-zCAT,0,0);
 }
 
 //animation loop
