@@ -98,6 +98,11 @@ function init() {
     var yBSD = 16;
     var yBSL = 1000;
 
+
+    //z ballscrew
+    var zBSD = 20;
+    var zBSL = 597;
+
     //y carriage angle: 2 pieces of the x carriage angle
     var yCAW = xCAH; //y gantry angle width
     var yCAH = xCAW;
@@ -116,6 +121,16 @@ function init() {
     var zCAH = xRAW;
     var zCAT = xRAT;
     var zCAL = yCAL/2;
+
+    //z carriage cap
+    var yCCW = xCAW;
+    var yCCH = xCAH;
+    var yCCT = xCAT;
+	
+    //y carriage brace
+    var yCBW = xRAW;
+    var yCBH = xRAH;
+    var yCBT = xRAT;	
 
     //x motor
     var xMotW = 56;
@@ -169,6 +184,10 @@ function init() {
     //inner width of y carriage angle
         function yCAInWidth(railObject, linBearObject, spMtObj) {
             return 2*railTotHeight(railObject, linBearObject) + 2*zCAT + spMtObj.width;
+        }
+    //outer width of y carriage angle
+        function yCAOutWidth(railObject, linBearObject, spMtObj) {
+            return 2*railTotHeight(railObject, linBearObject) + 2*zCAT + spMtObj.width + 2*yCAT;
         }
 
     //html container div - to house the WebGL content
@@ -256,7 +275,12 @@ function init() {
     var yCarAngObj = new shopAluAngle(yCAW,yCAH,yCAT,yCAL);
     var zRailObj = new shopSbrxx(zRL,zRD);
     var zLinBearObj = new shopSbrxxuu(zRD);
+    var zBScrwObj = new shopRmxx05(zBSD, zBSL);
+    var zBScrwFixSuppObj = new shopBkxx(zBSD);
+    var zBScrwFltSuppObj = new shopBfxx(zBSD);
     var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL);
+    var yCarAngCapObj = new shopAluAngle(yCCW,yCCH,yCCT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj) + zBScrwFixSuppObj.width);
+    var yCarAngBrcObj = new shopAluAngle(yCBW,yCBH,yCBT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj));
     var yBnutObj = new shopBallnut(yBSD);
     var yBnutMtObj = new shopBallnutMount(yBSD);
 
@@ -323,6 +347,8 @@ function init() {
         zLinBearCsg = zLinBearCsg.union(zLinBearCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj) - 2*(zRailObj.railZPos - zLinBearObj.railZPos),0])).center("y");
     var yCarAngCsg = yCarAngObj.makeCsg().rotateY(-90);
         yCarAngCsg = yCarAngCsg.union(yCarAngCsg.mirroredY().translate([0,2*yCAT + yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
+    var yCarAngCapCsg = yCarAngCapObj.makeCsg().mirroredZ().rotateZ(-90);	
+    var yCarAngBrcCsg = yCarAngBrcObj.makeCsg().mirroredZ().rotateZ(-90).center("y");	
     var yBnutCsg = yBnutObj.makeCsg().rotateZ(90).rotateY(90);
     var yBnutMtCsg = yBnutMtObj.makeCsg().rotateZ(90).rotateY(90);
     var zCarAngCsg = zCarAngObj.makeCsg().rotateY(-90);
@@ -461,6 +487,16 @@ function init() {
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
         yLinBears.add(yCarAng);
         yCarAng.position.set(-yLinBearObj.height,0,-yLinBearObj.width/2);
+    //y carriage angle cap
+        geom3 = THREE.CSG.fromCSG(yCarAngCapCsg);
+        var yCarAngCap = new THREE.Mesh(geom3,matAluminium);
+        yCarAng.add(yCarAngCap);
+        yCarAngCap.position.set(0,yCAOutWidth(zRailObj,zLinBearObj,spMtObj)/2,yCAL);
+    //y carriage angle brace 
+        geom3 = THREE.CSG.fromCSG(yCarAngBrcCsg);
+        var yCarAngBrc = new THREE.Mesh(geom3,matAluminium);
+        yCarAng.add(yCarAngBrc);
+        yCarAngBrc.position.set(0,0,gBH + yCBH + (yLinBearObj.width - yRailObj.width)/2 );
     //z rails
         geom3 = THREE.CSG.fromCSG(zRailCsg);
         var zRails = new THREE.Mesh(geom3,matAluminium);
