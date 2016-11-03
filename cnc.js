@@ -279,7 +279,7 @@ function init() {
     var zBScrwFixSuppObj = new shopBkxx(zBSD);
     var zBScrwFltSuppObj = new shopBfxx(zBSD);
     var zCarAngObj = new shopAluAngle(zCAW,zCAH,zCAT,zCAL);
-    var yCarAngCapObj = new shopAluAngle(yCCW,yCCH,yCCT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj) + zBScrwFixSuppObj.width);
+    var yCarAngCapObj = new shopAluAngle(yCCW,yCCH,yCCT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj));
     var yCarAngBrcObj = new shopAluAngle(yCBW,yCBH,yCBT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj));
     var yBnutObj = new shopBallnut(yBSD);
     var yBnutMtObj = new shopBallnutMount(yBSD);
@@ -338,7 +338,7 @@ function init() {
         yLinBearCsg = yLinBearCsg.rotateX(90).rotateZ(90).mirroredX().center("y");
     var yBScrwFixSuppCsg = yBScrwFixSuppObj.makeCsg().rotateZ(-90).rotateY(-90);
     var yBScrwFltSuppCsg = yBScrwFltSuppObj.makeCsg().rotateZ(90).rotateY(-90);
-    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).mirroredY().translate([0, -yBSL +yBScrwObj.threadLength/2, 0]);
+    var yBScrwCsg = yBScrwObj.makeCsg().rotateZ(-90).mirroredY().translate([0, -yBSL +yBScrwObj.threadLength/2 + yBScrwObj.threadFltNub, 0]);
     var spMtCsg = spMtObj.makeCsg().rotateZ(-90).rotateY(-90).center("y");
     var zRailCsg = zRailObj.makeCsg().rotateY(-90).rotateZ(-90);
         zRailCsg = zRailCsg.union(zRailCsg.mirroredY().translate([0,yCAInWidth(zRailObj, zLinBearObj, spMtObj),0])).center("y");
@@ -481,7 +481,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(yBScrwFixSuppCsg);
         var yBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
         yBScrwFltSupp.add(yBScrwFixSupp);
-        yBScrwFixSupp.position.set(0, - yBScrwObj.threadLength,0);
+        yBScrwFixSupp.position.set(0, - yBScrwObj.threadLength - yBScrwFixSuppObj.thick2,0);
     //y carriage angle
         geom3 = THREE.CSG.fromCSG(yCarAngCsg);
         var yCarAng = new THREE.Mesh(geom3,matAluminium);
