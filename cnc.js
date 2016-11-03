@@ -1,4 +1,4 @@
-//var clock = new THREE.Clock();
+///var clock = new THREE.Clock();
 //test test test
 //var container, stats;
 
