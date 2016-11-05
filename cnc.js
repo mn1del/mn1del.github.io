@@ -38,7 +38,7 @@ function init() {
 
     //x carriage angle
     var xCAW = 76.2;
-    var xCAH = 101.6;
+    var xCAH = 127;
     var xCAT = 6.35;
 
     //x rail
@@ -98,9 +98,8 @@ function init() {
     var yBSD = 16;
     var yBSL = 1000;
 
-
     //z ballscrew
-    var zBSD = 20;
+    var zBSD = 16;
     var zBSL = 597;
 
     //y carriage angle: 2 pieces of the x carriage angle
@@ -108,6 +107,18 @@ function init() {
     var yCAH = xCAW;
     var yCAT = xCAT;
     var yCAL = 600;
+
+    //z BScrew Mount
+    var zBsMtW = xCAW;	
+    var zBsMtH = xCAH;	
+    var zBsMtT = xCAT;
+    var zBsMtL = 100;	
+	
+    //z Bnut Mt
+    var zBsMtW = xCAW;	
+    var zBsMtH = xCAH;	
+    var zBsMtT = xCAT;
+    var zBsMtL = 100;	
 
     //z rail
     var zRL = 600;
@@ -121,6 +132,7 @@ function init() {
     var zCAH = xRAW;
     var zCAT = xRAT;
     var zCAL = yCAL/2;
+    var zCAZ = 0;
 
     //z carriage cap
     var yCCW = xCAW;
@@ -167,6 +179,7 @@ function init() {
 
     //spindle
     var spinD = 80; //diameter
+
 
     //project helper functions
     //returns span between inside edges of gantry sides
@@ -283,7 +296,10 @@ function init() {
     var yCarAngBrcObj = new shopAluAngle(yCBW,yCBH,yCBT,yCAOutWidth(zRailObj,zLinBearObj,spMtObj));
     var yBnutObj = new shopBallnut(yBSD);
     var yBnutMtObj = new shopBallnutMount(yBSD);
-
+    var zBScrwMtObj =  new shopAluAngle(zBsMtW, zBsMtH, zBsMtT, zBsMtL);
+    var zBnutObj = new shopBallnut(zBSD);
+    var zBnutMtObj = new shopBallnutMount(zBSD);
+	
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -353,6 +369,13 @@ function init() {
     var yBnutMtCsg = yBnutMtObj.makeCsg().rotateZ(90).rotateY(90);
     var zCarAngCsg = zCarAngObj.makeCsg().rotateY(-90);
 	zCarAngCsg = zCarAngCsg.union(zCarAngCsg.mirroredY().translate([0,yCAInWidth(zRailObj,zLinBearObj,spMtObj) - 2*railTotHeight(zRailObj,zLinBearObj),0])).center("y");
+    var zBScrwMtCsg = zBScrwMtObj.makeCsg().rotateY(-90).rotateZ(90);
+        zBScrwMtCsg = zBScrwMtCsg.union(zBScrwMtCsg.translate([0,0,yCAL - zBsMtL]));
+    var zBScrwFixSuppCsg = zBScrwFixSuppObj.makeCsg().rotateY(-90);
+    var zBScrwFltSuppCsg = zBScrwFltSuppObj.makeCsg().rotateY(-90);
+    var zBScrwCsg = zBScrwObj.makeCsg().rotateY(90).translate([0,0,zBSL]);
+    var zBnutCsg = zBnutObj.makeCsg().rotateY(90); //leaves flange at top for weight bearing
+    var zBnutMtCsg = zBnutMtObj.makeCsg().rotateY(90);
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -506,6 +529,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zLinBearCsg);
         var zLinBears = new THREE.Mesh(geom3,matAluminium);
         zRails.add(zLinBears);
+	zLinBears.position.set(0,0,zCAZ);
     //y ballnut
         geom3 = THREE.CSG.fromCSG(yBnutCsg);
         var yBnut = new THREE.Mesh(geom3,matAluminium);
@@ -521,12 +545,41 @@ function init() {
         var zCarAng = new THREE.Mesh(geom3,matAluminium);
         zLinBears.add(zCarAng);
         zCarAng.position.set(zCAH - zLinBearObj.width/2 ,0,0);
-//         zLinBears.position.set(-(zRailObj.railZPos - zLinBearObj.railZPos),0,0);
     // spindle mount
         geom3 = THREE.CSG.fromCSG(spMtCsg);
         var spMt = new THREE.Mesh(geom3,matAluminium);
         zCarAng.add(spMt);
         spMt.position.set(-zCAT,0,0);
+    // z ballscrew mount
+        geom3 = THREE.CSG.fromCSG(zBScrwMtCsg);
+        var zBScrwMt = new THREE.Mesh(geom3,matAluminium);
+        yCarAng.add(zBScrwMt);
+        zBScrwMt.position.set(0,-yCAOutWidth(zRailObj, zLinBearObj, spMtObj)/2,0);
+    //z ballscrew floating support
+        geom3 = THREE.CSG.fromCSG(zBScrwFltSuppCsg);
+        var zBScrwFltSupp = new THREE.Mesh(geom3,matAluminium);
+        zBScrwMt.add(zBScrwFltSupp);
+        zBScrwFltSupp.position.set(-zBsMtT, -zBsMtT - zBScrwFltSuppObj.width/2,0);
+    //z ballscrew fixed support
+        geom3 = THREE.CSG.fromCSG(zBScrwFixSuppCsg);
+        var zBScrwFixSupp = new THREE.Mesh(geom3,matAluminium);
+        zBScrwFltSupp.add(zBScrwFixSupp);
+        zBScrwFixSupp.position.set(0, 0,  zBScrwObj.threadLength + zBScrwFixSuppObj.thick + zBScrwFixSuppObj.thick2,0);
+    //z ballscrew
+        geom3 = THREE.CSG.fromCSG(zBScrwCsg);
+        var zBScrw = new THREE.Mesh(geom3,matAluminium);
+        zBScrwFltSupp.add(zBScrw);
+        zBScrw.position.set(-zBScrwFltSuppObj.bscrewZPos,0,zBScrwFltSuppObj.thick -zBScrwObj.threadFltNub);
+    // ballnut
+        geom3 = THREE.CSG.fromCSG(zBnutCsg);
+        var zBnut = new THREE.Mesh(geom3,matAluminium);
+        zBScrw.add(zBnut);
+        zBnut.position.set(0,0,zLBS/2 + zBnutObj.flangeThick);
+    //z ballnut mount
+        geom3 = THREE.CSG.fromCSG(zBnutMtCsg);
+        var zBnutMt = new THREE.Mesh(geom3,matAluminium);
+        zBnut.add(zBnutMt);
+        zBnutMt.position.set(0,-zBnutObj.flangeThick,0);
 }
 
 //animation loop
