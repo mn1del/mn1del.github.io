@@ -112,13 +112,7 @@ function init() {
     var zBsMtW = xCAW;	
     var zBsMtH = xCAH;	
     var zBsMtT = xCAT;
-    var zBsMtL = 100;	
-	
-    //z Bnut Mt
-    var zBsMtW = xCAW;	
-    var zBsMtH = xCAH;	
-    var zBsMtT = xCAT;
-    var zBsMtL = 100;	
+    var zBsMtL = 50;	
 
     //z rail
     var zRL = 600;
@@ -579,7 +573,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zBnutMtCsg);
         var zBnutMt = new THREE.Mesh(geom3,matAluminium);
         zBnut.add(zBnutMt);
-        zBnutMt.position.set(0,-zBnutObj.flangeThick,0);
+        zBnutMt.position.set(0,0,-zBnutObj.flangeThick);
 }
 
 //animation loop
