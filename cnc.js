@@ -299,7 +299,7 @@ function init() {
     var zBScrwMtObj =  new shopAluAngle(zBsMtW, zBsMtH, zBsMtT, zBsMtL);
     var zBnutObj = new shopBallnut(zBSD);
     var zBnutMtObj = new shopBallnutMount(zBSD);
-    var zDA1Obj = nnew shopAluAngle(zDA1W, zDA1H,zDA1T,zDA1L);
+    var zDA1Obj = new shopAluAngle(zDA1W, zDA1H,zDA1T,zDA1L);
 
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
@@ -377,7 +377,7 @@ function init() {
     var zBScrwCsg = zBScrwObj.makeCsg().rotateY(90).translate([0,0,zBSL]);
     var zBnutCsg = zBnutObj.makeCsg().rotateY(90).rotateZ(90); //leaves flange at top for weight bearing
     var zBnutMtCsg = zBnutMtObj.makeCsg().rotateY(90).rotateZ(90);
-    var zDA1Csg = zDA1Obj.makeCsg();
+    var zDA1Csg = zDA1Obj.makeCsg().rotate;
 
     //make THREE meshes, assemble and position
     var geom3;
