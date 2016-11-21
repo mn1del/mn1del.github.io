@@ -112,13 +112,13 @@ function init() {
     var zBsMtW = xCAW;	
     var zBsMtH = xCAH;	
     var zBsMtT = xCAT;
-    var zBsMtL = 75;	
-
-    //z drive arm1
-    var zDA1W = zBsMtW;
-    var zDA1H = zBsMtH;
-    var zDA1T = zBsMtT;
-    var zDA1L = zBsMtL;
+    var zBsMtL = 100;	
+	
+    //z Bnut Mt
+    var zBsMtW = xCAW;	
+    var zBsMtH = xCAH;	
+    var zBsMtT = xCAT;
+    var zBsMtL = 100;	
 
     //z rail
     var zRL = 600;
@@ -206,11 +206,17 @@ function init() {
     //html container div - to house the WebGL content
     //already made in index.html... an alternative would be to make on the fly here
     var container = document.getElementById("container");
+    var cncspace = document.getElementById("cncspace");
+    var wid = $("#cncspace").width(); // uses jquery $selector.action() syntax
+    var hei = wid/2; //$("#cncspace").height();
 
     //renderer
     renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild( renderer.domElement );
+    renderer.setSize(wid, hei);
+	console.log("width: " + wid + " Height: " + hei);
+    //renderer.setSize(window.innerWidth, window.innerHeight);
+    cncspace.appendChild( renderer.domElement );
+    //container.appendChild( renderer.domElement );
 
     //create scene (global scope)
     scene = new THREE.Scene();
@@ -219,14 +225,15 @@ function init() {
 
     //create camera (global scope)
     //and add to scene
-    camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 10000 );
+    camera = new THREE.PerspectiveCamera( 45, wid / hei, 1, 10000 );
+    //camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 10000 );
     camera.position.y = -1500;
     //camera.lookAt(new THREE.Vector3(0,0,0));
     //camera.position.z = 200;
     scene.add( camera );
 
     //add TrackBall controls to the camera
-    controls = new THREE.TrackballControls( camera);
+    controls = new THREE.TrackballControls( camera, cncspace);
     controls.position0.set( -200, -1500, 400 ); // set a new desired position
     controls.target0.set(0,0,100);
     controls.up0.set( 0, 0, 1 ); // set a new up vector
@@ -299,8 +306,7 @@ function init() {
     var zBScrwMtObj =  new shopAluAngle(zBsMtW, zBsMtH, zBsMtT, zBsMtL);
     var zBnutObj = new shopBallnut(zBSD);
     var zBnutMtObj = new shopBallnutMount(zBSD);
-    var zDA1Obj = new shopAluAngle(zDA1W, zDA1H,zDA1T,zDA1L);
-
+	
     //make CSGs, and where applicable copies, to be merged into a single geometry
     var baseCsg = baseObj.makeCsg();
         baseCsg = baseCsg.center("y");
@@ -375,9 +381,8 @@ function init() {
     var zBScrwFixSuppCsg = zBScrwFixSuppObj.makeCsg().rotateY(-90);
     var zBScrwFltSuppCsg = zBScrwFltSuppObj.makeCsg().rotateY(-90);
     var zBScrwCsg = zBScrwObj.makeCsg().rotateY(90).translate([0,0,zBSL]);
-    var zBnutCsg = zBnutObj.makeCsg().rotateY(90).rotateZ(90); //leaves flange at top for weight bearing
-    var zBnutMtCsg = zBnutMtObj.makeCsg().rotateY(90).rotateZ(90);
-    var zDA1Csg = zDA1Obj.makeCsg().rotate;
+    var zBnutCsg = zBnutObj.makeCsg().rotateY(90); //leaves flange at top for weight bearing
+    var zBnutMtCsg = zBnutMtObj.makeCsg().rotateY(90);
 
     //make THREE meshes, assemble and position
     var geom3;
@@ -581,7 +586,7 @@ function init() {
         geom3 = THREE.CSG.fromCSG(zBnutMtCsg);
         var zBnutMt = new THREE.Mesh(geom3,matAluminium);
         zBnut.add(zBnutMt);
-        zBnutMt.position.set(0,0,-zBnutObj.flangeThick);
+        zBnutMt.position.set(0,-zBnutObj.flangeThick,0);
 }
 
 //animation loop
