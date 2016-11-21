@@ -7,16 +7,51 @@
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
 		</style>
+
+    		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    		<!-- Optional Bootstrap theme -->
+
+    		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 	</head>
 	<body>
-                <div id='container'>
-                </div>
 
 		<script src="lib/three.min.js"></script>
                 <script src="lib/ThreeCSG.js"></script>
                 <script src="lib/TrackballControls.js"></script>
                 <script src="lib/csg.js"></script>
                 <script src="lib/shop.js"></script>  
-                <script src="cnc.js"></script>              
+		
+    		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+                <div id='container' class="container-fluid">
+                    <div clas="row">
+		        <!-- THIS IS A HEADER ROW-->
+		        <div class="col-sm-12">
+		            <div class="header">Some Kind of Header Here</div>
+	                </div>		
+                        <div class="clearfix visible-md-block"></div>
+                    </div>
+		    <div class="row">
+			<!-- THIS IS A COLUMN TO THE LEFT OF THE CNC.JS OUTPUT-->
+		        <div class="col-sm-6">
+                            <div class="sidebar">test</div>
+			</div>
+			    
+			<!-- THIS IS THE DIV WHERE THE CNC.JS OUTPUT GOES-->
+		        <div id='cncspace' class="col-sm-6" style="cursor: move;">
+                            <script src="cnc.js"></script>              
+		        </div>
+                        <div class="clearfix visible-md-block"></div>
+                    </div>
+                </div>
+
 	</body>
 </html>
+    
+    
