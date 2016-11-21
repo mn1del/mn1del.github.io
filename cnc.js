@@ -208,7 +208,7 @@ function init() {
     var container = document.getElementById("container");
     var cncspace = document.getElementById("cncspace");
     var wid = $("#cncspace").width(); // uses jquery $selector.action() syntax
-    var hei = wid/2; //$("#cncspace").height();
+    var hei =  wid/2; //$("#cncspace").height();
 
     //renderer
     renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -595,10 +595,23 @@ function animate() {
     requestAnimationFrame( animate );
     camera.up.set(0,0,1);
     controls.update();
+
     render();
 }
 
 //render function
 function render() {
     renderer.render( scene, camera );
+}
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize(){
+    var wid = $("#cncspace").width(); // uses jquery $selector.action() syntax
+    var hei =  wid/2; //$("#cncspace").height();
+	
+    camera.aspect = wid / hei;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( wid, hei );
 }
