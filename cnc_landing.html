@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">CNC Landing</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="cnc_landing.html">Home</a></li>
+        <li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Build Notes<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">cnc_1.0</a></li>
+            <li><a href="#">cnc_2.0</a></li>
+            <li><a href="#">cnc_3.0</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">BS Index</a></li>
+            <li><a href="index_w3.html">W3 Index</a></li>
+            <li><a href="design_w3.html">w3 design</a></li>
+          </ul>
+		</li>
+        <li><a href="#">Something Else...</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<!-- div .container holding a series of .carousel, .h3 and .p -->
+<div class="container" style="margin-top:50px">
+	<div class="row">
+		<div class="col-xs-11">
+			<h3>Base Build</h3>
+		</div>
+		<div class="col-xs-1">
+			<h3>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#mdlBase">
+				<span class="glyphicon glyphicon-blackboard" data-toggle="tooltip" title="Open a 3D model of this component"></span>
+				</button>
+			</h3>
+
+		</div>
+	</div>
+	<p>Some text about the base build here. Notice fixed (top) nav bar.</p>
+	<p>Various steps of the base build appear in carousel item below. After that will be similar carousels for various other components/assemblies.</p>
+<!--/div-->
+
+	<div id="crslBase" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover"> <!-- "hover" doesn't seem to be working"" -->
+		<!-- Indicators -->
+		<ol class="carousel-indicators" >
+			<li data-target="#crslBase" data-slide-to="0" class="active" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslBase" data-slide-to="1" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslBase" data-slide-to="2" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslBase" data-slide-to="3" style="background-color:rgb(200,200,200)"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 0.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 1.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 2.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 3.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+		</a>
+	</div>
+
+	<!-- Componenet 2 -->
+	<h3>xRail Build</h3>
+	<p>Detail on xRail dimensions and hole locations</p>
+
+	<div id="crslXR" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover"> <!-- "hover" doesn't seem to be working"" -->
+		<!-- Indicators -->
+		<ol class="carousel-indicators" >
+			<li data-target="#crslXR" data-slide-to="0" class="active" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslXR" data-slide-to="1" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslXR" data-slide-to="2" style="background-color:rgb(200,200,200)"></li>
+			<li data-target="#crslXR" data-slide-to="3" style="background-color:rgb(200,200,200)"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 0.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 1.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 2.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+
+			<div class="item">
+			  <img src="Capture.JPG" alt="Base Build" class="img-circle">
+			  <div class="well">
+				  <p><span class="glyphicon glyphicon-info-sign"></span> Some text relating to component 3.</p>
+				  <p>Further instruction here if necessary</p>
+			  </div>
+			</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+</body>
+</html>
