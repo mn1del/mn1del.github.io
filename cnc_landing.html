@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>Bootstrap CNC</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -48,7 +48,7 @@
       </ul>
     </div>
   </div>
-</nav>
+</div>
   
 <!-- div .container holding a series of .carousel, .h3 and .p -->
 <div class="container" style="margin-top:50px">
@@ -69,7 +69,7 @@
 	<p>Various steps of the base build appear in carousel item below. After that will be similar carousels for various other components/assemblies.</p>
 <!--/div-->
 
-	<div id="crslBase" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="hover"> <!-- "hover" doesn't seem to be working"" -->
+	<div id="crslBase" class="carousel slide" data-pause="hover" data-ride="carousel" data-interval="5000" > <!-- "hover" doesn't seem to be working"" -->
 		<!-- Indicators -->
 		<ol class="carousel-indicators" >
 			<li data-target="#crslBase" data-slide-to="0" class="active" style="background-color:rgb(200,200,200)"></li>
@@ -114,11 +114,11 @@
 		</div>
 
 		<!-- Left and right controls -->
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<a class="left carousel-control" href="#crslBase" role="button" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		<span class="sr-only">Previous</span>
 		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<a class="right carousel-control" href="#crslBase" role="button" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		<span class="sr-only">Next</span>
 		</a>
@@ -173,11 +173,11 @@
 		</div>
 
 		<!-- Left and right controls -->
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<a class="left carousel-control" href="#crslXR" role="button" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		<span class="sr-only">Previous</span>
 		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<a class="right carousel-control" href="#crslXR" role="button" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 		<span class="sr-only">Next</span>
 		</a>
