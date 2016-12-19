@@ -183,5 +183,16 @@
 		</a>
 	</div>
 </div>
+
+<!-- Temporary jQuery script to address non-working data-pause="hover" functionality in carousel -->
+<script>
+    $('.carousel').on('mouseenter', function(){
+		        $(this).carousel("pause");
+				    })
+
+    $('.carousel').on('mouseleave', function(){
+		        $(this).carousel("cycle");
+				    })
+</script>
 </body>
 </html>
