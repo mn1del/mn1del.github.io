@@ -8,6 +8,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+  <script>
+	$(document).ready(function(){ 
+		<!--Temporary jQuery script to address non-working datapausehover functionality in carousel-->
+
+		$(".carousel").on({
+		    mouseenter: function(){
+			$(this).carousel("pause");
+		    },
+		    mouseleave: function(){
+			$(this).carousel("cycle");
+		    }
+		});
+	});
+</script>
+
 </head>
 <body>
 
@@ -184,15 +200,5 @@
 	</div>
 </div>
 
-<!-- Temporary jQuery script to address non-working data-pause="hover" functionality in carousel -->
-<script>
-    $('.carousel').on('mouseenter', function(){
-		        $(this).carousel("pause");
-				    })
-
-    $('.carousel').on('mouseleave', function(){
-		        $(this).carousel("cycle");
-				    })
-</script>
 </body>
 </html>
