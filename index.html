@@ -1,80 +1,117 @@
 
 <!DOCTYPE html>
-<html>
-	<head>
-	    <meta charset=utf-8>
-	    <title>Slate Bed CNC</title>
-	    <style>
-		    body { margin: 0; }
-		    canvas { width: 100%; height: 100% }
-	    </style>
+<html lang="en">
+<head>
+  <title>Bootstrap CNC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+  <!-- jQuery here -->
+  <script>
+	$(document).ready(function(){ 
 
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	});
+  </script>
 
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
 
-	    <!-- Optional Bootstrap theme -->
-		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	    <style type="text/css">
-		.row{ margin-bottom: 15px; }
-		.header{ min-height: 90px; }
-		.footer{ min-height: 60px; }
-		.header, .footer{ background: #2f2f2f; }
-		.sidebar{ background: #dbdfe5; }
-		.content{ background: #b4bac0; }
-		.sidebar, .content{ min-height: 300px; }
-	    </style>
-	</head>
+<body>
 
-	<body >
-	    <script src="lib/three.min.js"></script>
-	    <script src="lib/ThreeCSG.js"></script>
-	    <script src="lib/TrackballControls.js"></script>
-	    <script src="lib/csg.js"></script>
-	    <script src="lib/shop.js"></script>  
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">CNC Landing</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="cnc_landing.html">Home</a></li>
+        <li ><a href="cnc_landing.html">Design</a></li>
+        <li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Make<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">cnc_1.0</a></li>
+            <li><a href="#">cnc_2.0</a></li>
+            <li><a href="#">cnc_3.0</a></li>
+          </ul>
+        </li>
+        <li><a href="cnc_landing.html">Shop</a></li>
+        <li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html">BS Index</a></li>
+            <li><a href="index_w3.html">W3 Index</a></li>
+            <li><a href="design_w3.html">w3 design</a></li>
+          </ul>
+		</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /navbar -->
+  
+<!-- Jumbotron -->
+<div class="jumbotron" style="margin-top:50px">	
+	<div class="container">
+		<h1>Test<h1>
+		<p>Some words...<p>
+	</div>
+</div>
+<!-- /jumbotron -->
 
-
-		<div class="jumbotron">
-			<div id='container' class="container">
-					<!-- THIS IS A HEADER ROW-->
-					<div class="header">
-						<ul class="nav nav-pills">
-							<li class="active"><a href="index_w3.html">W3 Version</a></li>
-							<li><a href="design_w3.html">W3 design</a></li>
-							<li class="dropdown">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle">Menu 3 <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Submenu 1</a></li>
-									<li><a href="#">Submenu 2</a></li>
-									<li><a href="#">Submenu 3</a></li>
-									<li class="divider"></li>
-									<li><a href="#">Trash</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>		
-				<div class="row">
-					<!-- THIS IS A COLUMN TO THE LEFT OF THE CNC.JS OUTPUT-->
-					<div class="col-sm-3">
-					<div class="sidebar">
-						<ul class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#" >Sidemenu 1</a></li>
-						<li><a href="#"  >Sidemenu 2</a></li>
-						<li><a href="#"  >Sidemenu 3</a></li>
-						</ul>
-					</div>
-					</div>
-					<!-- THIS IS THE DIV WHERE THE CNC.JS OUTPUT GOES-->
-					<div id='cncspace' class="col-sm-9" style="cursor: move;">
-					<script src="cnc.js"></script>              
-					</div>
-					<div class="clearfix visible-md-block"></div>
-				</div>
+<!-- Design-Make-Shop-->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<h2 class="text-center">design.</h2>
+				<img src="https://static.pexels.com/photos/2097/desk-office-pen-ruler.jpg" class="img-rounded img-responsive" alt="design">
+				<p class="visible-xs text-center">We help you turn your ideas and sketches into digital designs, ready to be produced anywhere in the world.</p>
+				<a class="visible-xs" url="#">Get Started!</a>
+			</div>
+			<div class="col-sm-4">
+				<h2 class="text-center">make.</h2>
+				<img src="https://static.pexels.com/photos/171198/pexels-photo-171198.jpeg" class="img-rounded img-responsive" alt="make">
+				<p class="visible-xs">With no prior experience anybody can establish a home-based manufacturing business for less than one thousand pounds.</p>
+				<a class="visible-xs" url="#">Get Started!</a>
+			</div>
+			<div class="col-sm-4">
+				<h2 class="text-center">shop.</h2>
+							<img src="https://static.pexels.com/photos/34577/pexels-photo.jpg" class="img-rounded img-responsive" alt="make">
+				<p class="visible-xs">A global marketplace for your products.</p>
+				<a class="visible-xs" url="#">Get Started!</a>
 			</div>
 		</div>
-	</body>
+
+		<!-- additional row that toggles content positioning with screen size -->
+		<div class="row hidden-xs">
+			<div class="col-sm-4 text-center">
+				<p class="text-center">We help you turn your ideas and sketches into digital designs, ready to be produced anywhere in the world.</p>
+				<a url="#" class="text-center">Get Started!</a>
+			</div>
+			<div class="col-sm-4">
+				<p class="text-center">With no prior experience anybody can establish a home-based manufacturing business for less than one thousand pounds.</p>
+				<a url="#" class="text-center">Get Started!</a>
+			</div>
+			<div class="col-sm-4">
+				<p class="text-center">A global marketplace for your products.</p>
+				<a url="#" class="text-center">Get Started!</a>
+			</div>
+		</div>
+	</div>
+<div><!-- /jumbotron -->
+<!-- /Design-Make-Shop -->
+
+</body>
 </html>
-    
-    
