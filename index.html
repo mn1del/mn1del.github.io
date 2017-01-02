@@ -11,7 +11,7 @@
 	
   <!-- jQuery here -->
   <script>
-	$(document).ready(function(){ 
+    $(document).ready(function(){  <!-- only gets fired after page has loaded--> 
 
 	});
   </script>
@@ -21,54 +21,59 @@
 <body>
 
 <!-- Navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">CNC Landing</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="cnc_landing.html">Home</a></li>
-        <li ><a href="cnc_landing.html">Design</a></li>
-        <li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Make<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">cnc_1.0</a></li>
-            <li><a href="#">cnc_2.0</a></li>
-            <li><a href="#">cnc_3.0</a></li>
-          </ul>
-        </li>
-        <li><a href="cnc_landing.html">Shop</a></li>
-        <li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="index.html">BS Index</a></li>
-            <li><a href="index_w3.html">W3 Index</a></li>
-            <li><a href="design_w3.html">w3 design</a></li>
-          </ul>
-		</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>                        
+		  </button>
+		  <a class="navbar-brand" href="#">CNC Landing</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="index.html">Home</a></li>
+			<li ><a href="cnc_landing.html">Design</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Make<span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a href="cnc1.0_build.html">cnc_1.0</a></li>
+				<li><a href="#">cnc_2.0</a></li>
+				<li><a href="#">cnc_3.0</a></li>
+			  </ul>
+			</li>
+			<li><a href="cnc_landing.html">Shop</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<span class="caret"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+				<li><a href="index.html">BS Index</a></li>
+				<li><a href="index_w3.html">W3 Index</a></li>
+				<li><a href="design_w3.html">w3 design</a></li>
+				<li role="separator" class ="divider"></li>
+				<li class="dropdown-header">More Options</li>
+				<li><a href="#">Link 1</a></li>
+				<li><a href="#">Link 2</a></li>
+				<li><a href="#">Link 3</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
 <!-- /navbar -->
   
 <!-- Jumbotron -->
-<div class="jumbotron" style="margin-top:50px">	
-	<div class="container">
-		<h1>Test<h1>
-		<p>Some words...<p>
+	<div class="jumbotron" style="margin-top:50px">	
+		<div class="container">
+			<h1 class="text-center">Your Global Product<h1>
+				<p class="text-center">Harness the digital manufacturing revolution to bring your creation to the world<p>
+		</div>
 	</div>
-</div>
 <!-- /jumbotron -->
 
 <!-- Design-Make-Shop-->
@@ -116,8 +121,16 @@
 			</div>
 		</div>
 	</div>
-<div><!-- /jumbotron -->
 <!-- /Design-Make-Shop -->
+
+
+<!-- Jumbotron -->
+	<div class="jumbotron" style="margin-top:50px">	
+		<div class="container">
+			<h2 class="text-center">How does it work?<h2>
+		</div>
+	</div>
+<!-- /jumbotron -->
 
 </body>
 </html>
