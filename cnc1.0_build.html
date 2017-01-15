@@ -94,10 +94,18 @@
         <nav id="myScrollspy" class="col-sm-3">
           <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="150">
             <li class="active dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Machine assembly<span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assembly<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#fastenings">Fastenings</a></li>
                 <li><a href="#lineardrivex">Linear Drive - X axis</a></li>                     
+              </ul>
+            </li>
+            
+            <li class="active dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#rpi">Raspberry Pi</a></li>
+                <li><a href="#grbl">GRBL</a></li>                     
               </ul>
             </li>
           </ul>
@@ -112,7 +120,7 @@
 
                   <div class="panel-body"><!-- x rail screws -->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/xrscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -125,7 +133,7 @@
 
                 <div class="panel-body"><!-- gantry side screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/gsscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -138,7 +146,7 @@
 
                 <div class="panel-body"><!-- y motor mount screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/ymotormt.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -151,7 +159,7 @@
 
                 <div class="panel-body"><!-- gantry back screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/gantrybackscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -164,7 +172,7 @@
 
                 <div class="panel-body"><!-- ball screw bearings screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/bkbfscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -177,7 +185,7 @@
 
 <div class="panel-body"><!-- sbr20uu screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/sbr20uuscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -189,7 +197,7 @@
 
                 <div class="panel-body"><!-- sbr16uu screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/sbr20uuscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -201,7 +209,7 @@
 
                 <div class="panel-body"><!-- rm1605 ball nut screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/rm1605ballnutscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -213,7 +221,7 @@
 
                 <div class="panel-body"><!-- rm2005 ball nut screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/rm1605ballnutscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -225,7 +233,7 @@
 
                 <div class="panel-body"><!-- rm1605 ball nut mount screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/rm1605ballnutmt.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -238,7 +246,7 @@
 
                 <div class="panel-body"><!-- rm2005 ball nut mount screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/rm1605ballnutmt.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -250,7 +258,7 @@
 
                 <div class="panel-body"><!-- y carriage angle screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/ycascrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -263,7 +271,7 @@
 
                 <div class="panel-body"><!-- spindle mount screws-->
                         <div class="media">
-                          <div class="media-left media-middle">
+                          <div class="media-left media-top">
                             <img src="img/spinmtscrews.jpg" class="media-object" style="width:120px">
                           </div>
                           <div class="media-body">
@@ -283,7 +291,7 @@
             <img id="lineardrivex" src="img/lineardrivex.jpg" alt="frontview" isrc="https://myhub.autodesk360.com/ue2855102/shares/public/sh7f1edqt22b515c761e95de4e1509727cb9?mode=embed" class="img-rounded img-responsive center-block" data-toggle="modal" data-target="#buildmodal1" style="cursor: pointer;">
 
   			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/xRailBase.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -295,7 +303,7 @@
             </div> 
 
            <div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/xBSMt.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -307,7 +315,7 @@
            </div>
 
            <div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/xBSMt.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -322,7 +330,7 @@
            </div>		
 
 		   <div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/gantrySide.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -333,7 +341,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/xDriveArm.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -344,7 +352,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/gantryBack.JPG" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -355,7 +363,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/gb_gs.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -367,7 +375,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/gsa.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -378,7 +386,7 @@
            </div>
 			
             <div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/cnc1.0_sbruu_holeinset.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -388,7 +396,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/cnc1.0_xr.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -400,7 +408,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/cnc1.0_xr.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -412,7 +420,7 @@
            </div>
 
 			<div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
                 <img src="img/cnc1.0_xr.jpg" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -434,16 +442,75 @@
             </div>
           <!-- /jumbotron -->
 
-          <!-- GRBL panel -->
-          <div class="panel panel-primary">
+          <!-- Raspberry Pi Panel -->
+          <div id="rpi" class="panel panel-primary">
             <div class="panel-heading">
-                <h1 class="panel-title">GRBL Setup</h1>
+                <h1 class="panel-title">Raspberry Pi Setup</h1>
             </div>
 
-            <img id="microstepping" src="img/microstepping.jpg" alt="frontview" isrc="img/microstepping.jpg" class="img-rounded img-responsive center-block" data-toggle="modal" data-target="#buildmodal1" style="cursor: pointer;">
+            <img src="img/RPI.jpg" alt="frontview" isrc="img/RPI.jpg" class="img-rounded img-responsive center-block" data-toggle="modal" data-target="#buildmodal1" style="cursor: pointer;">
 
             <div class="media">
-              <div class="media-left media-middle">
+              <div class="media-left media-top">
+                <img src="img/raspberry.jpg" alt="raspberry pi" class="media-object" style="width:120px">
+              </div>
+              <div class="media-body">
+                  <h4>Raspberry Pi intro</h4>
+              <p>the brilliant raspberry pi (rpi) is really at the heart of controlling the cnc machine. it runs bcnc, the software which processes the gcode and talks directly to the arduino which runs grbl and drives the motors. furthermore, the setup is designed from the ground up to run "headless" -  rpi talk for not having any connected monitor, keyboard or mouse. instead, the rpi is itself controlled "remotely" by another computer on the network, or even another computer anywhere in the world connected via the internet. what this means in practice is that a designer can edit their design and generate the gcode for the cam toolpaths from their home pc, and then "remote in" to the rpi in their garage (or anywhere in the world) to start the routing. internet of things, indeed! of course, with power comes responsibility, and there are legitimate security concerns that need resolving.</p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left media-top">
+                <img src="img/raspbiansd.jpg" alt="raspberry pi" class="media-object" style="width:120px">
+              </div>
+              <div class="media-body">
+                <h4>Raspbian Image Install</h4>
+                <p>Raspbian is the Linux operating system that we will be installing onto our RPi. To do this, we need to download an "image" onto and SD card using our regular PC. The image is how we initally boot and load the starting software packages onto our RPi. The official documentation for installing images can be found <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">here</a>.</p>
+                <p>To help you out, we have already got a pre-made image with everything you need. <a href="downloads/rpi_rasp_bcnc.img" download>DOWNLOAD THIS</a> , and use you favourite SD card writer to write to the SD card.</p>
+              </div>
+            </div>
+
+              <!-- SSH setup (headless) -->
+              <div class="media">
+                <div class="media-left media-top">
+                  <img src="img/putty.jpg" alt="raspberry pi" class="media-object" style="width:120px">
+                </div>
+                <div class="media-body">
+                  <h4>SSH Setup</h4>
+                  <p>ssh (secure shell) is a protocol for securely granting access to remote computers. it is encrypted, and is what we will use to "tunnel" through a "vnc" connection (see below) to ensure that everything is secure. ssh itself can be used to remote in to the rpi, but is only recommended for those who are comfortable controlling a computer via a terminal screen. for our purposes, it is a means to an end, and can be set up as per <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md" >these </a>instructions.</p>
+                  <p>note that as of november 2016 the raspbian with pixel image available from reapberrypi.org downloads has changed a setting in order to disable ssh by default. now, for new users who wish to set up their new raspberry pi headlessly they first need to use any computer with and sd card to add a file called "ssh" into the /boot/ directory. now, when the image is loaded, ssh will be enabled, and allow headless operation. of course, enabling ssh also potentially opens the pi up to the internet, so it is important to change the password for the pi. see <a href="https://www.raspberrypi.org/blog/a-security-update-for-raspbian-pixel/">this update </a>for more details.</p>
+                  <p>to set up your rpi headlessly, follow the steps as laid out <a href="https://www.raspberrypi.org/forums/viewtopic.php?t=74176" >here.</a></p>
+              </div>
+            </div><!-- /ssh setup -->
+
+              <!-- VNC Setup -->
+              <div class="media">
+                <div class="media-left media-top">
+                  <img src="img/vnc.jpg" alt="raspberry pi" class="media-object" style="width:120px">
+                </div>
+                <div class="media-body">
+                  <h4>VNC Setup</h4>
+                  <p>vnc (virtual network computing) is the protocol that allows us to remotely control the graphical desktop of the raspberry pi. you can use any computer in the world to vnc into your raspberry pi, and it will be as though you are working directly on the raspberry pi itself. however, there are security concerns with directly vnc-ing in because once connected the data exchanged are not encrypted. therefore, we will set up the vnc to "tunnel" through the ssh connection we created above.</p>
+                  <p>the first step is to setup the vnc "server" on the rpi itself. we might interchangeably use the terms server/host/remote to refer to the rpi in this context. follow the instructions <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md" >here </a>upto, but not including the section titled "connecting to your rraspberry pi with vnc viewer". that link refers to the vnc server provided by realvnc. a popular alternative is to use tightvncserver on the raspberry pi - click <a href="https://www.weaved.com/using-weaved-with-tightvnc-and-the-raspberry-pi/">here</a> for instructions.</p>
+                  <p>once the vnc server is set up, we need to think about how you access it from your local computer (the one that you are physically working on). this might be a computer on the same home network as the rpi, or, since our machine has been designed to be fully web-connected, this computer can actually be any internet-connected computer (or tablet, or even smartphone!) in the world.</p>
+                  <p>the way we set this up is by using remot3.it, by weaved inc.the remot3.it software is installed onto the rpi and can be used to manage just this pi or a large number of pis, from the internet. this can be used to access and tcp port on the pi over the web including ssh, vnc, http(s), rdp and custom tcp services. in our case, we will be using remot3.it to access the pi via vnc - although note that remot3.it just sets up the connection and generates ip addresses/ports to connect, using your own vnc client/viewer. for more details on installing remot3.it see the <a href="https://www.raspberrypi.org/documentation/remote-access/access-over-internet/readme.md">raspberrypi.org</a> website, and for full instructions see the weaved.com instructions <a href="http://forum.weaved.com/t/how-to-get-started-with-remot3-it-for-pi/1029">here </a>and <a href="http://forum.weaved.com/t/upgrade-your-pi-to-remot3-it-from-weaved/1154">here.</a></p>
+                  <p>it's worth mentioning one other service, teamviewer, that looks very promising for our application. teamviewer is fully secure, and appears to be much more user friendly and easy to deploy. see their <a href="https://www.teamviewer.com/en/">website</a> for more details, or see <a href="https://bkjaya.wordpress.com/2016/12/13/how-to-control-zoneminder-cctv-installed-on-raspberry-pi3-remotely-using-teamviewer/">here</a> for a good example of how teamviewer was used to control a raspberry pi home surveillance system.</p>
+                </div>
+              </div><!-- /vnc setup -->
+
+            </div><!-- /Raspberry Pi Panel -->
+
+          <!-- GRBL panel -->
+          <div id="grbl" class="panel panel-primary">
+            <div class="panel-heading" >
+                <h1  class="panel-title">GRBL Setup</h1>
+            </div>
+
+            <img  src="img/microstepping.jpg" alt="frontview" isrc="img/microstepping.jpg" class="img-rounded img-responsive center-block" data-toggle="modal" data-target="#buildmodal1" style="cursor: pointer;">
+
+            <div class="media">
+              <div class="media-left media-top">
                 <img src="img/microstepping.jpg" alt="grbl step size setting"  class="media-object" style="width:120px">
               </div>
               <div class="media-body">
@@ -455,55 +522,6 @@
            </div> 
           </div><!-- /GRBL panel -->
 
-          <!-- Raspberry Pi Panel -->
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h1 class="panel-title">Raspberry Pi Setup</h1>
-            </div>
-
-            <img id="rpi" src="img/RPI.jpg" alt="frontview" isrc="img/RPI.jpg" class="img-rounded img-responsive center-block" data-toggle="modal" data-target="#buildmodal1" style="cursor: pointer;">
-
-            <div class="media">
-              <div class="media-left media-middle">
-                <img src="img/raspberry.jpg" alt="raspberry pi" class="media-object" style="width:120px">
-              </div>
-              <div class="media-body">
-                  <h4>Raspberry Pi intro</h4>
-              <p>the brilliant raspberry pi (rpi) is really at the heart of controlling the cnc machine. it runs bcnc, the software which processes the gcode and talks directly to the arduino which runs grbl and drives the motors. furthermore, the setup is designed from the ground up to run "headless" -  rpi talk for not having any connected monitor, keyboard or mouse. instead, the rpi is itself controlled "remotely" by another computer on the network, or even another computer anywhere in the world connected via the internet. what this means in practice is that a designer can edit their design and generate the gcode for the cam toolpaths from their home pc, and then "remote in" to the rpi in their garage (or anywhere in the world) to start the routing. internet of things, indeed! of course, with power comes responsibility, and there are legitimate security concerns that need resolving.</p>
-              </div>
-            </div>
-
-            <div class="media">
-              <div class="media-left media-middle">
-                <img src="img/raspbianimage.jpg" alt="raspberry pi" class="media-object" style="width:120px">
-              </div>
-              <div class="media-body">
-                  <h4>Raspbian Image Install</h4>
-              <p>Raspbian is the Linux operating system that we will be installing onto our RPi. To do this, we need to download an "image" onto and SD card using our regular PC. The image is how we initally boot and load the starting software packages onto our RPi. The official documentation for installing images can be found <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">here</a>.</p>
-              <p>To help you out, we have already got a pre-made image with everything you need. <a href="downloads/rpi_rasp_bcnc.img" download>DOWNLOAD THIS</a> , and use you favourite SD card writer to write to the SD card.</p>
-              </div>
-            </div>
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">initial setup</div>
-                            <div class="panel-body">to set up your rpi headlessly, follow the steps as laid out <a href="https://www.raspberrypi.org/forums/viewtopic.php?t=74176" >here.</a></div>
-                          </div><!-- /initial setup -->
-
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">ssh setup</div>
-                            <div class="panel-body">ssh (secure shell) is a protocol for securely granting access to remote computers. it is encrypted, and is what we will use to "tunnel" through a "vnc" connection (see below) to ensure that everything is secure. ssh itself can be used to remote in to the rpi, but is only recommended for those who are comfortable controlling a computer via a terminal screen. for our purposes, it is a means to an end, and can be set up as per <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md" >these </a>instructions.</div>
-                            <div class="panel-body">note that as of november 2016 the raspbian with pixel image available from reapberrypi.org downloads has changed a setting in order to disable ssh by default. now, for new users who wish to set up their new raspberry pi headlessly they first need to use any computer with and sd card to add a file called "ssh" into the /boot/ directory. now, when the image is loaded, ssh will be enabled, and allow headless operation. of course, enabling ssh also potentially opens the pi up to the internet, so it is important to change the password for the pi. see <a href="https://www.raspberrypi.org/blog/a-security-update-for-raspbian-pixel/">this update </a>for more details.</div>
-                          </div><!-- /ssh setup -->
-
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">vnc setup</div>
-                            <div class="panel-body">vnc (virtual network computing) is the protocol that allows us to remotely control the graphical desktop of the raspberry pi. you can use any computer in the world to vnc into your raspberry pi, and it will be as though you are working directly on the raspberry pi itself. however, there are security concerns with directly vnc-ing in because once connected the data exchanged are not encrypted. therefore, we will set up the vnc to "tunnel" through the ssh connection we created above.</div>
-                            <div class="panel-body">the first step is to setup the vnc "server" on the rpi itself. we might interchangeably use the terms server/host/remote to refer to the rpi in this context. follow the instructions <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md" >here </a>upto, but not including the section titled "connecting to your rraspberry pi with vnc viewer". that link refers to the vnc server provided by realvnc. a popular alternative is to use tightvncserver on the raspberry pi - click <a href="https://www.weaved.com/using-weaved-with-tightvnc-and-the-raspberry-pi/">here</a> for instructions.</div>
-                            <div class="panel-body">once the vnc server is set up, we need to think about how you access it from your local computer (the one that you are physically working on). this might be a computer on the same home network as the rpi, or, since our machine has been designed to be fully web-connected, this computer can actually be any internet-connected computer (or tablet, or even smartphone!) in the world.</div>
-                            <div class="panel-body">the way we set this up is by using remot3.it, by weaved inc.the remot3.it software is installed onto the rpi and can be used to manage just this pi or a large number of pis, from the internet. this can be used to access and tcp port on the pi over the web including ssh, vnc, http(s), rdp and custom tcp services. in our case, we will be using remot3.it to access the pi via vnc - although note that remot3.it just sets up the connection and generates ip addresses/ports to connect, using your own vnc client/viewer. for more details on installing remot3.it see the <a href="https://www.raspberrypi.org/documentation/remote-access/access-over-internet/readme.md">raspberrypi.org</a> website, and for full instructions see the weaved.com instructions <a href="http://forum.weaved.com/t/how-to-get-started-with-remot3-it-for-pi/1029">here </a>and <a href="http://forum.weaved.com/t/upgrade-your-pi-to-remot3-it-from-weaved/1154">here.</a></div>
-                            <div class="panel-body">it's worth mentioning one other service, teamviewer, that looks very promising for our application. teamviewer is fully secure, and appears to be much more user friendly and easy to deploy. see their <a href="https://www.teamviewer.com/en/">website</a> for more details, or see <a href="https://bkjaya.wordpress.com/2016/12/13/how-to-control-zoneminder-cctv-installed-on-raspberry-pi3-remotely-using-teamviewer/">here</a> for a good example of how teamviewer was used to control a raspberry pi home surveillance system.</div>
-                          </div><!-- /vnc setup -->
-
-                        </div>
                  </div><!-- /.item -->
             </div><!-- Raspberry Pi setup Panel -->
 
