@@ -462,14 +462,103 @@
 
             <div class="media">
               <div class="media-left media-top">
-                <img src="img/raspbiansd.jpg" alt="raspberry pi" class="media-object" style="width:120px">
+                <img src="img/raspbian.jpg" alt="raspberry pi" class="media-object" style="width:120px">
               </div>
               <div class="media-body">
                 <h4>Raspbian Image Install</h4>
-                <p>Raspbian is the Linux operating system that we will be installing onto our RPi. To do this, we need to download an "image" onto and SD card using our regular PC. The image is how we initally boot and load the starting software packages onto our RPi. The official documentation for installing images can be found <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">here</a>.</p>
+                <p>Raspbian is the Linux operating system that we will be installing onto our RPi. To do this, we need to download an "image" onto an SD card using our regular PC. The image is how we initally boot and load the starting software packages onto our RPi. The official documentation for installing images can be found <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">here</a>.</p>
                 <p>To help you out, we have already got a pre-made image with everything you need. <a href="downloads/rpi_rasp_bcnc.img" download>DOWNLOAD THIS</a> , and burn the image to a micro SD card, following the instructions for <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md">Windows</a>, <a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md">Mac OS</a>, or <a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md">Linux</a> as appropriate.</p>
+
+                <div class="media"><!-- Level 1 Nested Media -->
+                  <div class="media-left media-top">
+                    <img src="img/raspbiansd.jpg" alt="Download Image" class="media-object" style="width:120px">
+                  </div>
+                  <div class="media-body">
+                    <h4>Step 1: Download Raspbian/CNC Image</h4>
+                    <p>The guys at protoneer.co.nz have kindly put together a pre-configured Raspberry Pi image with everything you need to get started. Download the image <a href="http://www.protoneer.com/files/RPI-CNC-V300.zip">here</a>.</p>
+                  </div>
+                </div><!-- Level 1 Nested Media -->
+
+                <div class="media"><!-- Level 1 Nested Media -->
+                  <div class="media-left media-top">
+                    <img src="img/sdformatter.jpg" alt="SD Formatter" class="media-object" style="width:120px">
+                  </div>
+                  <div class="media-body">
+                    <h4>Step 2: Format the SD Card</h4>
+                    <p>The SD card needs formatting to ensure is is empty and clean. Download SD Formatter from <a href="https://www.sdcard.org/downloads/formatter_4/eula_windows/index.html">here</a> and follow <a href="https://www.sdcard.org/downloads/formatter_4/SDFormatter_4e.pdf">these</a> instructions.</p>
+                    <p>To be honest, there really isn't much to it - just pop the SD card into your PC, make a note of what drive it appears in, open SD Formatter and check that the right drive is selected, and then hit "Format", clicking through the warnings.</p>
+                  </div>
+                </div><!-- Level 1 Nested Media -->
+
+                <div class="media"><!-- Level 1 Nested Media -->
+                  <div class="media-left media-top">
+                    <img src="img/win32.jpg" alt="Win32 Disk Imager" class="media-object" style="width:120px">
+                  </div>
+                  <div class="media-body">
+                    <h4>Step 3: Burn the Image to the SD Card</h4>
+                    <p>Once the SD card is formatted and ready to be written, the Raspbian/CNC image is ready to be burned to it. For Windows PCs download Win32 Disk Imager <a href="https://sourceforge.net/projects/win32diskimager/">here</a> and follow <a href="https://www.raspberrypi.org/documentation/installation/installing-images/windows.md">these</a> instructions.</p>
+                    <p>Again, it's easy... open up Win32DiskImager, browse to the above image file you downloaded, and then hit "Write". It'll take a few minutes to write, but then you're done!</p>
+                  </div>
+                </div><!-- Level 1 Nested Media -->
+
+                <div class="media"><!-- Level 1 Nested Media -->
+                  <div class="media-left media-top">
+                    <img src="img/raspbianx.jpg" alt="Raspbian OS" class="media-object" style="width:120px">
+                  </div>
+                  <div class="media-body">
+                    <h4>Step 4: Boot up the Raspberry Pi!</h4>
+                    <p>Now the exciting part - you are ready to breathe life into your Raspberry Pi! Pop the Micro SD card into the slot on the RPi (it's on the underside, at the end opposite the SD slots), then plug in a keyboard/mouse, and hook up the Pi to an HDMI monitor. Then, just plug her in.</p>
+                    <p>You'll see a few lines of text whizz by in the command line shell, but within a few seconds it'll boot straight up into the graphical Operating System. You are up and running!</p>
+                  </div>
+                </div><!-- Level 1 Nested Media -->
+
               </div>
             </div>
+
+              <!-- Initial Config-->
+              <div class="media">
+                <div class="media-left media-top">
+                  <img src="img/rpiconfig.jpg" alt="raspberry pi configuration" class="media-object" style="width:120px">
+                </div>
+                <div class="media-body">
+                  <h4>Initial RPi Configuration (IMPORTANT)</h4>
+                  <p>You are now up and running. However, before diving into anything, there are one or two important steps that need to be taken. Simple, but important. </p>
+                  <p>Start by navigating through to Menu->Preferences->Raspberry Pi Configuration</p>
+
+                  <div class="media"><!-- Level 1 Nested Media -->
+                    <div class="media-left media-top">
+                      <img src="img/rpiconfig1.jpg" alt="RPi Password" class="media-object" style="width:120px">
+                    </div>
+                    <div class="media-body">
+                      <h4>Step 1: CHANGE YOUR PASSWORD!!!!!</h4>
+                      <p>The Pi comes shipped with the default password "raspberry", which obviously isn't the most secure password. Before you do anything else, on the System tab of the Configuration screen, press the button to change your password.</p>
+                      <h4>Step 2: Expand Filesystem</h4>
+                      <p>Press the "Expand Filesystem" button. This ensures that all of your SD card's storage is made available to the RPi.</p>
+                      <h4>Step 3: Ensure SSH is enabled</h4>
+                      <p>On the "Interfaces" tab, make sure SSH has been enabled.</p>
+                      <h4>Step 4: Reboot</h4>
+                      <p>When you close the Configuration screen, you should be prompted to reboot the RPi - do this.</p>
+                      <h4>Step 5: Connect to Your Network and note down your IP address</h4>
+                      <p>Towards the top right of your desktop you will see a network connection icon. Click it, and connect to your network.</p>
+                      <p>Once connected, find your RPi's IP address by opening the Terminal (it is pinned to the bar at the top of the desktop), typing "ifconfig", and hitting enter. Your IP address will be labelled "inet addrs:" next to your relevant connection (wlan0 for wifi, or eth0 if you are connected to ethernet).</p>
+                    </div>
+                  </div><!-- Level 1 Nested Media -->
+
+              </div>
+            </div><!-- /initial config -->
+
+              <!-- TeamViewer Setup-->
+              <div class="media">
+                <div class="media-left media-top">
+                  <img src="img/teamviewer.jpg" alt="TeamViewer Setup" class="media-object" style="width:120px">
+                </div>
+                <div class="media-body">
+                  <h4>TeamViewer Setup</h4>
+                  <p>TeamViewer is one of the largest providers of Remote Software in the world. There are lots of choices out there when it comes to remoting in to you RPi, but we support TeamViewer for a number of reasons: 1) Security - TeamViewer features strong encryption, end-to-end encoding, optional two-factor-authentication. 2) Ease of use - No pesky port forwarding, no need to generate static IP addresses. Just install the TeamViewer Host on the RPi and it's good to go. 3) Multi-platform - you can access your RPi from Windows, Macs, Linux, Chrome OS, Android, iOS, Windows App and Blackberry!</p>
+                  <h4>Step 1: Download TeamViewer onto the RPi</h4>
+                  <p>TeamViewermViewerThas a new </p>
+              </div>
+            </div><!-- TeamViewer Setup-->
 
               <!-- SSH setup (headless) -->
               <div class="media">
