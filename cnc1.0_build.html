@@ -542,7 +542,7 @@
                       <p>Towards the top right of your desktop you will see a network connection icon. Click it, and connect to your network.</p>
                       <p>Once connected, find your RPi's IP address by opening the Terminal (it is pinned to the bar at the top of the desktop), typing "ifconfig", and hitting enter. Your IP address will be labelled "inet addrs:" next to your relevant connection (wlan0 for wifi, or eth0 if you are connected to ethernet).</p>
                     </div>
-                  </div><!-- Level 1 Nested Media -->
+                  </div><!-- /Level 1 Nested Media -->
 
               </div>
             </div><!-- /initial config -->
@@ -554,11 +554,46 @@
                 </div>
                 <div class="media-body">
                   <h4>TeamViewer Setup</h4>
-                  <p>TeamViewer is one of the largest providers of Remote Software in the world. There are lots of choices out there when it comes to remoting in to you RPi, but we support TeamViewer for a number of reasons: 1) Security - TeamViewer features strong encryption, end-to-end encoding, optional two-factor-authentication. 2) Ease of use - No pesky port forwarding, no need to generate static IP addresses. Just install the TeamViewer Host on the RPi and it's good to go. 3) Multi-platform - you can access your RPi from Windows, Macs, Linux, Chrome OS, Android, iOS, Windows App and Blackberry!</p>
-                  <h4>Step 1: Download TeamViewer onto the RPi</h4>
-                  <p>TeamViewermViewerThas a new </p>
-              </div>
+                  <p>TeamViewer is one of the largest providers of Remote Software in the world. There are lots of choices out there when it comes to remoting in to you RPi, but we support TeamViewer for a number of reasons: 1) Security - TeamViewer features strong encryption, end-to-end encoding, optional two-factor-authentication. 2) Ease of use - No pesky port forwarding, no need to generate static IP addresses. Just install the TeamViewer Host on the RPi and it's good to go. 3) Multi-platform - you can access your RPi from Windows, Mac, Linux, Chrome OS, Android, iOS, Windows App and Blackberry!</p>
+                  
+                  <!-- Level 1 Nested Media -->
+                  <div class="media">
+                    <div class="media-left media-top">
+                      <img src="img/tvrpi.jpg" alt="TeamViewer Setup" class="media-object" style="width:120px">
+                    </div>
+                    <div class="media-body">
+                      <h4>Step 1: Download and Open TeamViewer on the RPi</h4>
+                      <p>TeamViewer's Host App beta is designed exclusively for running on Raspbian. Download <a href="http://download.teamviewer.com/download/linux/version_11x/teamviewer-host_armhf.deb">here.</a> This will save into the pi/Downloads folder of the RPi.</p>
+                      <p>Open the downloaded file. You will probably be prompted for your system password.</p>
+                    </div>
+                  </div>
+
+                  <!-- Level 1 Nested Media -->
+                  <div class="media">
+                    <div class="media-left media-top">
+                      <img src="img/rpiheadless.jpg" alt="TeamViewer Setup" class="media-object" style="width:120px">
+                    </div>
+                    <div class="media-body">
+                      <h4>Step 2: Decide Whether to Run your Pi Headlessly</h4>
+                      <p>Running the RPi "headless" means that you will have no monitor/keyboard/mouse plugged in. To enable this you must set up a TeamViewer password for unattended access. In the Rpi right click the TeamViewer icon in the top right of the desktop and select Options. Under "Security" enter a secure password under "Personal password (for unattended access)". Now, the RPi is accessible even in headless mode using this password.</p>
+                      <p>If you prefer not to make unatteded access possible, then stick with the default, setting, whereby you let the RPi's TeamViewer host generate a random password, which you then communicate to the remote user. We'd recommend increasing the password strength in the Options->Security tab.</p>
+                  </div>
+                </div><!-- /Level 1 Nested Media -->
+              </div><!-- /Media-Body -->
             </div><!-- TeamViewer Setup-->
+
+            <!-- Remote Desktop Setup-->
+            <div class="media">
+              <div class="media-left media-top">
+                <img src="img/rdp.jpg" alt="Remote Desktop Setup" class="media-object" style="width:120px">
+              </div>
+              <div class="media-body">
+                <h4>Remote Desktop Setup</h4>
+                <p>RDP is Microsoft's answer to remote working, and works by entering a computer address into a remote desktop connection screen, and then entering the user credentials of the target computer. In our case, the RPi image was already pre-loaded with XRDB, which makes this easy for us.</p>
+                <p>While the RPi is on, simply open up the Remote Desktop Connection Windows app, enter the RPi's IP address, and then the pi username/password when prompted. That's it! You'll have the RPi gui open up in a new window, as if you were working directly on the pi itself.</p>
+                <p>One note... by default, this will only work when connecting in from another PC on the same LAN.</p>
+              </div><!-- /Media-Body -->
+            </div><!-- Remote Desktop Setup-->
 
               <!-- SSH setup (headless) -->
               <div class="media">
